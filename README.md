@@ -4,7 +4,7 @@ Visit the live link [SONIKON](https://github.com/johirhaquedipok).
 
 ## Available Specificaton
 
-    - Admin Panel
+    * Admin Panel
 
 ## Packages that are used in this project
 
@@ -12,7 +12,7 @@ Visit the live link [SONIKON](https://github.com/johirhaquedipok).
 
 ## Username
 
-    *** React
+    * React
 
 ## Password
 
