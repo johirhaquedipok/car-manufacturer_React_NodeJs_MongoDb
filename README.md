@@ -12,8 +12,8 @@ Visit the `live` link [SONIKON](https://github.com/johirhaquedipok).
 
 ### Username
 
-    * React
+     johirhaquedipok2@gmail.com
 
 ### Password
 
-    *** React
+     123456789
