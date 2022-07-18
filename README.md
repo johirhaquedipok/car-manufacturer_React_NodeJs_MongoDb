@@ -4,11 +4,11 @@ Visit the live link [SONIKON](https://github.com/johirhaquedipok).
 
 ## Available Specificaton
 
-    * Admin Panel
+- Admin Panel
 
 ## Packages that are used in this project
 
-    - React
+- React
 
 ## Username
 
