@@ -1,4 +1,5 @@
 import React from "react";
+import CustomLink from "./CustomLink/CustomLink";
 
 const Navbar = () => {
   return (
@@ -53,18 +54,22 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
             <li>
-              <a>Item 1</a>
+              <CustomLink to="/home">Home</CustomLink>
             </li>
             <li tabindex="0">
-              <a>Parent</a>
+              <a>Blog</a>
             </li>
             <li>
-              <a>Item 3</a>
+              <a>Portfolio</a>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Sign In</a>
+          <ul className="menu menu-horizontal p-0">
+            <li>
+              <CustomLink to="/signin">Sign In</CustomLink>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
