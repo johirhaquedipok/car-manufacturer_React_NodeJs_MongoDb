@@ -8,7 +8,7 @@ const CustomLink = ({ children, to, ...props }) => {
   return (
     <Link
       // style={{ textDecoration: match ? "bg-base-200" : "none" }}
-      className={match ? "bg-primary" : ""}
+      className={match && "bg-primary text-black"}
       to={to}
       {...props}
     >
