@@ -1,8 +1,17 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
+import AvatarCard from "../../Features/Ui/AvatarCard";
 import CustomLink from "./CustomLink/CustomLink";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const Navbar = () => {
+  const [user] = useAuthState(auth);
+
+  const signout = () => {
+    signOut(auth);
+  };
   return (
     <div>
       <div className="navbar bg-base-300">
@@ -69,9 +78,28 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <ul className="menu menu-horizontal p-0">
-            <li>
-              <CustomLink to="/signin">Sign In</CustomLink>
-            </li>
+            <>
+              {user ? (
+                <div className="dropdown  dropdown-left">
+                  <div className="avatar online " tabIndex="0">
+                    <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                      <img src={user.photoURL} alt={user.displayName} />
+                    </div>
+                  </div>
+
+                  <div
+                    tabIndex="0"
+                    className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52"
+                  >
+                    <AvatarCard user={user} signout={signout} />
+                  </div>
+                </div>
+              ) : (
+                <li>
+                  <CustomLink to="/signin">Sign In</CustomLink>
+                </li>
+              )}
+            </>
           </ul>
         </div>
       </div>
