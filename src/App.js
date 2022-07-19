@@ -1,4 +1,3 @@
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Route, Routes } from "react-router-dom";
 import AddAProduct from "./Components/Features/Dashboard/AdminDashBoard/AddAProduct";
 import ManageAllOrders from "./Components/Features/Dashboard/AdminDashBoard/ManageAllOrders";
@@ -14,9 +13,7 @@ import HomePage from "./Components/Pages/HomePage/HomePage";
 import Portfolio from "./Components/Pages/Portfolio/Portfolio";
 import Footer from "./Components/Pages/shared/Footer";
 import Navbar from "./Components/Pages/shared/Navbar";
-import auth from "./firebase.init";
 function App() {
-  const [user] = useAuthState(auth);
   return (
     <>
       <Navbar />

@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col  ">
+      <div className="drawer-content flex flex-col ">
         {/* Page content here */}
         <h2 className="text-5xl text-purple-500">Dashboard</h2>
         <Outlet />
@@ -35,13 +35,13 @@ const Dashboard = () => {
           {/* {admin && (
             <>
               <li>
-                <Link to="/dashboard/allusers">Users</Link>
+                <Link to="/dashboard/addaproduct">AddAProduct</Link>
               </li>
               <li>
-                <Link to="/dashboard/addDoctor">Add A Doctor</Link>
+                <Link to="/dashboard/mangeallorders">ManageAllOrders</Link>
               </li>
               <li>
-                <Link to="/dashboard/manageDoctors">Manage Doctors</Link>
+                <Link to="/dashboard/mangeproducts">ManageProducts</Link>
               </li>
             </>
           )} */}
