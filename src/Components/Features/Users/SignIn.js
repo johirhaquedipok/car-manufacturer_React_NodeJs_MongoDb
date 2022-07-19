@@ -1,38 +1,83 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
 
 const SignIn = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
-  if (loading) {
+  // sing in with email and password
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  // navigate
+  const navigate = useNavigate();
+  // location
+  const location = useLocation();
+  // const from = location.state?.from?.pathname || "/";
+
+  // form
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+  };
+
+  if (gloading || loading) {
     return <Loading />;
   }
-  if (error) {
-    <Error>{error.message}</Error>;
-  }
+  // if (gerror || error) {
+  //   <Error>{error.message}</Error>;
+  // }
 
   return (
     <div className="grid grid-cols-1 place-items-center">
-      <div className="card w-96 glass">
+      <div className="card md:w-96 glass">
         <div className="card-body">
           <div className="mb-4">
-            <h3 className="font-semibold text-2xl">Sign In </h3>
-            <h2 className="card-title">Life hack</h2>
+            <h3 className="card-title">Sign In </h3>
+
             <p className="text-white">Please sign in to your account.</p>
           </div>
-          <div className="space-y-5">
+
+          {/* error message */}
+          {(gerror || error) && (
+            <Error>
+              {error?.message} {gerror?.message}
+            </Error>
+          )}
+
+          <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-2">
               <label className="text-sm font-medium text-white tracking-wide">
                 Email
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
-                placeholder="mail@gmail.com"
+                type="email"
+                placeholder="Your Email"
+                {...register("email", {
+                  required: true,
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Provide a valid email",
+                  },
+                })}
               />
+              {errors.email?.type === "required" && (
+                <p className="text-error">Email is required</p>
+              )}
             </div>
             <div className="space-y-2">
               <label className="mb-5 text-sm font-medium text-white tracking-wide">
@@ -40,10 +85,14 @@ const SignIn = () => {
               </label>
               <input
                 className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
-                placeholder="Enter your password"
+                type="password"
+                placeholder="Your Password"
+                {...register("password", { required: true, min: 6 })}
               />
             </div>
+            {errors.password && (
+              <p className="text-error">Password is required</p>
+            )}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -60,9 +109,9 @@ const SignIn = () => {
                 </label>
               </div>
               <div className="text-sm">
-                <a href="#" className="text-green-400 hover:text-green-500">
+                <Link to="#" className="text-green-400 hover:text-green-500">
                   Forgot your password?
-                </a>
+                </Link>
               </div>
             </div>
             <div>
@@ -73,16 +122,33 @@ const SignIn = () => {
                 Sign in
               </button>
             </div>
-          </div>
+          </form>
           <div className="divider">OR</div>
-          <p>Sign In with social</p>
-          <div className="card-actions justify-center">
-            <button
-              className="btn btn-secondary w-full flex justify-center  hover:bg-secondary-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
-              onClick={() => signInWithGoogle()}
-            >
-              Sign In
-            </button>
+
+          {/* social sing in */}
+          <div>
+            <p className="text-center my-2">Sign In with social</p>
+            <div className="card-actions justify-center">
+              <button
+                className="btn btn-secondary w-full flex justify-center  hover:bg-secondary-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
+                onClick={() => signInWithGoogle()}
+              >
+                Sign In with Google
+              </button>
+            </div>
+          </div>
+
+          {/* sign up*/}
+          <div>
+            <p className="text-center my-2">Not Have Any account?</p>
+            <div className="card-actions justify-center">
+              <Link
+                to="/singup"
+                className="btn btn-outline btn-info w-full flex justify-center  hover:bg-secondary-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
+              >
+                Sign Up
+              </Link>
+            </div>
           </div>
         </div>
       </div>
