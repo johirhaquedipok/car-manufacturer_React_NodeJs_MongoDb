@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CustomLink from "./CustomLink/CustomLink";
 
 const Navbar = () => {
@@ -49,7 +50,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <Link className="btn btn-ghost normal-case text-xl" to={"/"}>
+            SoniKon
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
@@ -57,10 +60,10 @@ const Navbar = () => {
               <CustomLink to="/home">Home</CustomLink>
             </li>
             <li tabindex="0">
-              <a>Blog</a>
+              <CustomLink to="/blog">Blog</CustomLink>
             </li>
             <li>
-              <a>Portfolio</a>
+              <CustomLink to="/portfolio">Portfolio</CustomLink>
             </li>
           </ul>
         </div>
