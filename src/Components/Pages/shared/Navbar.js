@@ -80,20 +80,30 @@ const Navbar = () => {
           <ul className="menu menu-horizontal p-0">
             <>
               {user ? (
-                <div className="dropdown  dropdown-left">
-                  <div className="avatar online " tabIndex="0">
-                    <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
-                      <img src={user.photoURL} alt={user.displayName} />
-                    </div>
-                  </div>
+                <>
+                  {/* dashboard */}
+                  <li>
+                    <CustomLink to="/dashboard">Dashboard</CustomLink>
+                  </li>
 
-                  <div
-                    tabIndex="0"
-                    className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52"
-                  >
-                    <AvatarCard user={user} signout={signout} />
-                  </div>
-                </div>
+                  {/* users profile card */}
+                  <li>
+                    <div className="dropdown  dropdown-left">
+                      <div className="avatar online " tabIndex="0">
+                        <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                          <img src={user.photoURL} alt={user.displayName} />
+                        </div>
+                      </div>
+
+                      <div
+                        tabIndex="0"
+                        className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52"
+                      >
+                        <AvatarCard user={user} signout={signout} />
+                      </div>
+                    </div>
+                  </li>
+                </>
               ) : (
                 <li>
                   <CustomLink to="/signin">Sign In</CustomLink>
