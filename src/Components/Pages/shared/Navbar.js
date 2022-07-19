@@ -68,11 +68,11 @@ const Navbar = () => {
             <li>
               <CustomLink to="/home">Home</CustomLink>
             </li>
-            <li tabIndex="0">
-              <CustomLink to="/blog">Blog</CustomLink>
-            </li>
             <li>
               <CustomLink to="/portfolio">Portfolio</CustomLink>
+            </li>
+            <li>
+              <CustomLink to="/blog">Blog</CustomLink>
             </li>
           </ul>
         </div>

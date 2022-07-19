@@ -28,17 +28,18 @@ function App() {
         <Route path="portfolio" element={<Portfolio />} />
 
         {/* auth based routes for all users */}
-        <Route path="usersprofile" element={<UsersProfile />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />}>
+          <Route path="usersprofile" element={<UsersProfile />} />
 
-        {/* auth based routes for regular users */}
-        <Route path="addreview" element={<AddAReview />} />
-        <Route path="myorders" element={<MyOrders />} />
+          {/* auth based routes for regular users */}
+          <Route path="addareview" element={<AddAReview />} />
+          <Route path="myorders" element={<MyOrders />} />
 
-        {/* auth based routes for Admin */}
-        <Route path="addaproduct" element={<AddAProduct />} />
-        <Route path="mangeallorders" element={<ManageAllOrders />} />
-        <Route path="mangeproducts" element={<ManageProducts />} />
+          {/* auth based routes for Admin */}
+          <Route path="addaproduct" element={<AddAProduct />} />
+          <Route path="mangeallorders" element={<ManageAllOrders />} />
+          <Route path="mangeproducts" element={<ManageProducts />} />
+        </Route>
 
         {/* signin / sing up */}
         <Route path="signin" element={<SignIn />} />
