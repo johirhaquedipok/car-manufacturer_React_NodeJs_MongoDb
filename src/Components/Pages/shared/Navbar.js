@@ -91,7 +91,14 @@ const Navbar = () => {
                     <div className="dropdown dropdown-left">
                       <div className="avatar online " tabIndex="0">
                         <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
-                          <img src={user.photoURL} alt={user.displayName} />
+                          <img
+                            src={
+                              user?.photoURL
+                                ? user?.photoURL
+                                : "https://placeimg.com/192/192/people"
+                            }
+                            alt={user?.displayName}
+                          />
                         </div>
                       </div>
 

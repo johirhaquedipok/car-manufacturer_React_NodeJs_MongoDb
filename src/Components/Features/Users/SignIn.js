@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
-
 const SignIn = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
@@ -20,7 +20,13 @@ const SignIn = () => {
   const navigate = useNavigate();
   // location
   const location = useLocation();
-  // const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
+
+  useEffect(() => {
+    if (guser || user) {
+      navigate(from, { replace: true });
+    }
+  }, [navigate, user, guser, from]);
 
   // form
   const {
@@ -29,9 +35,10 @@ const SignIn = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+  // sing in with email and password
+  const onSubmit = async (data) => {
+    await signInWithEmailAndPassword(data.email, data.password);
+    toast.success("sign in successful");
   };
 
   if (gloading || loading) {
@@ -89,10 +96,10 @@ const SignIn = () => {
                 placeholder="Your Password"
                 {...register("password", { required: true, min: 6 })}
               />
+              {errors.password && (
+                <p className="text-error">Password is required</p>
+              )}
             </div>
-            {errors.password && (
-              <p className="text-error">Password is required</p>
-            )}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -109,7 +116,10 @@ const SignIn = () => {
                 </label>
               </div>
               <div className="text-sm">
-                <Link to="#" className="text-green-400 hover:text-green-500">
+                <Link
+                  to="/resetpwd"
+                  className="text-green-400 hover:text-green-500"
+                >
                   Forgot your password?
                 </Link>
               </div>
@@ -123,9 +133,9 @@ const SignIn = () => {
               </button>
             </div>
           </form>
-          <div className="divider">OR</div>
 
           {/* social sing in */}
+          <div className="divider">OR</div>
           <div>
             <p className="text-center my-2">Sign In with social</p>
             <div className="card-actions justify-center">

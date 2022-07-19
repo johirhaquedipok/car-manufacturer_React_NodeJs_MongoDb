@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AddAProduct from "./Components/Features/Dashboard/AdminDashBoard/AddAProduct";
 import ManageAllOrders from "./Components/Features/Dashboard/AdminDashBoard/ManageAllOrders";
 import ManageProducts from "./Components/Features/Dashboard/AdminDashBoard/ManageProducts";
@@ -6,6 +8,8 @@ import Dashboard from "./Components/Features/Dashboard/Dashboard";
 import AddAReview from "./Components/Features/Dashboard/Regular-user-dashboard/AddAReview";
 import MyOrders from "./Components/Features/Dashboard/Regular-user-dashboard/MyOrders";
 import UsersProfile from "./Components/Features/Dashboard/UsersProfile/UsersProfile";
+import RequireAuth from "./Components/Features/Users/RequireAuth";
+import ResetPassword from "./Components/Features/Users/ResetPassword";
 import SignIn from "./Components/Features/Users/SignIn";
 import SignUp from "./Components/Features/Users/SignUp";
 import Blog from "./Components/Pages/Blog/Blog";
@@ -25,7 +29,14 @@ function App() {
         <Route path="portfolio" element={<Portfolio />} />
 
         {/* auth based routes for all users */}
-        <Route path="dashboard" element={<Dashboard />}>
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />{" "}
+            </RequireAuth>
+          }
+        >
           <Route path="usersprofile" element={<UsersProfile />} />
 
           {/* auth based routes for regular users */}
@@ -41,9 +52,11 @@ function App() {
         {/* signin / sing up */}
         <Route path="signin" element={<SignIn />} />
         <Route path="singup" element={<SignUp />} />
-      </Routes>
 
+        <Route path="resetpwd" element={<ResetPassword />} />
+      </Routes>
       <Footer />
+      <ToastContainer />
     </>
   );
 }
