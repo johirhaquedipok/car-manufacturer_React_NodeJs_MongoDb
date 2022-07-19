@@ -76,8 +76,8 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <ul className="menu menu-horizontal p-0">
+        <div className="navbar-end lg:flex">
+          <ul className="menu menu-horizontal p-0 ">
             <>
               {user ? (
                 <>
@@ -88,7 +88,7 @@ const Navbar = () => {
 
                   {/* users profile card */}
                   <li>
-                    <div className="dropdown  dropdown-left">
+                    <div className="dropdown dropdown-left">
                       <div className="avatar online " tabIndex="0">
                         <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
                           <img src={user.photoURL} alt={user.displayName} />
