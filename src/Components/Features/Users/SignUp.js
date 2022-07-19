@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -12,6 +12,10 @@ import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
 
 const SignUp = () => {
+  // checkbox state
+  const [check, setCheck] = useState(false);
+
+  // google sign in
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
   // create user with email and password
@@ -71,6 +75,7 @@ const SignUp = () => {
           )}
 
           <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+            {/* name */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-white tracking-wide">
                 Name
@@ -90,6 +95,8 @@ const SignUp = () => {
                 <p className="text-error">Name is required</p>
               )}
             </div>
+
+            {/* email */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-white tracking-wide">
                 Email
@@ -110,6 +117,8 @@ const SignUp = () => {
                 <p className="text-error">Email is required</p>
               )}
             </div>
+
+            {/* passowrd */}
             <div className="space-y-2">
               <label className="mb-5 text-sm font-medium text-white tracking-wide">
                 Password
@@ -124,8 +133,13 @@ const SignUp = () => {
                 <p className="text-error">Password is required</p>
               )}
             </div>
+
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
+              {/* chechbox */}
+              <div
+                className="flex items-center"
+                onClick={() => setCheck(!check)}
+              >
                 <input
                   id="remember_me"
                   name="remember_me"
@@ -136,9 +150,11 @@ const SignUp = () => {
                   htmlFor="remember_me"
                   className="ml-2 block text-sm text-white"
                 >
-                  Remember me
+                  Agree terms and conditions
                 </label>
               </div>
+
+              {/* reset password link */}
               <div className="text-sm">
                 <Link
                   to="/resetpwd"
@@ -148,10 +164,13 @@ const SignUp = () => {
                 </Link>
               </div>
             </div>
+
+            {/* submit button */}
             <div>
               <button
                 type="submit"
                 className=" btn btn-primary w-full flex justify-center  hover:bg-primary-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
+                disabled={check ? false : true}
               >
                 Sign Up
               </button>
