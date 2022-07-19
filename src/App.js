@@ -1,5 +1,6 @@
+import Footer from "./Components/CommonComponents/Footer";
+import Navbar from "./Components/CommonComponents/Navbar";
 import Blog from "./Components/Pages/Blog/Blog";
-import Navbar from "./Components/Pages/Home/Navbar";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <Navbar />
 
       <Blog />
+      <Footer />
     </>
   );
 }
