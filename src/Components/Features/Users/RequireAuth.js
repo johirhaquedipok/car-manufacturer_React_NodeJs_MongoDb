@@ -19,7 +19,7 @@ const RequireAuth = ({ children }) => {
     await sendEmailVerification();
     toast.success("Sent email");
   };
-
+  // location
   const location = useLocation();
 
   if (loading || sending) {

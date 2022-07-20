@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
@@ -15,18 +14,6 @@ const SignIn = () => {
   // sing in with email and password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-
-  // navigate
-  const navigate = useNavigate();
-  // location
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
-  useEffect(() => {
-    if (guser || user) {
-      navigate(from, { replace: true });
-    }
-  }, [navigate, user, guser, from]);
 
   // form
   const {
@@ -38,15 +25,21 @@ const SignIn = () => {
   // sing in with email and password
   const onSubmit = async (data) => {
     await signInWithEmailAndPassword(data.email, data.password);
-    toast.success("sign in successful");
   };
+
+  // navigate
+  const navigate = useNavigate();
+  // location
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   if (gloading || loading) {
     return <Loading />;
   }
-  // if (gerror || error) {
-  //   <Error>{error.message}</Error>;
-  // }
+
+  if (guser || user) {
+    navigate(from, { replace: true });
+  }
 
   return (
     <div className="grid grid-cols-1 place-items-center">
