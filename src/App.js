@@ -14,6 +14,7 @@ import SignIn from "./Components/Features/Users/SignIn";
 import SignUp from "./Components/Features/Users/SignUp";
 import Blog from "./Components/Pages/Blog/Blog";
 import HomePage from "./Components/Pages/HomePage/HomePage";
+import NotFound from "./Components/Pages/NotFound/NotFound";
 import Portfolio from "./Components/Pages/Portfolio/Portfolio";
 import Footer from "./Components/Pages/shared/Footer";
 import Navbar from "./Components/Pages/shared/Navbar";
@@ -54,6 +55,7 @@ function App() {
         <Route path="singup" element={<SignUp />} />
 
         <Route path="resetpwd" element={<ResetPassword />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <ToastContainer />
