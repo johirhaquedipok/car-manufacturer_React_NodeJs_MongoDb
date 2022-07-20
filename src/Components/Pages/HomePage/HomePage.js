@@ -1,29 +1,31 @@
-import axios from "axios";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import { useQuery } from "react-query";
+import PurchasePage from "../PurchasePage/Purchase-page";
+import ProductSection from "./Product-section";
+
 const HomePage = () => {
-  async function fetchPosts() {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    return data;
-  }
-  const { isLoading, data } = useQuery("users", fetchPosts);
-
-  console.log(data);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://jsonplaceholder.typicode.com/posts/1")
-  //     .then((res) => console.log(res));
-  // }, []);
+  const handleUseQuery = () => {
+    // use refethc form on click imported from useQuery
+    // refetch();
+  };
 
   return (
     <div>
       <p className="text-center text-4xl">HomePage</p>
+      {/* product card */}
+      <div className="flex gap-4">
+        <ProductSection />
+        {/* product form card */}
+        <PurchasePage />
+      </div>
 
       {/* example */}
+      <button
+        className="btn btn-success text-center self-center"
+        onClick={handleUseQuery}
+      >
+        lick to load for use query with onclick
+      </button>
 
       <div
         className="bg-no-repeat bg-cover bg-center "
