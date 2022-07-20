@@ -1,10 +1,23 @@
+import axios from "axios";
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase.init";
 
+import { useQuery } from "react-query";
 const HomePage = () => {
-  const [user] = useAuthState(auth);
+  async function fetchPosts() {
+    const { data } = await axios.get(
+      "https://jsonplaceholder.typicode.com/users"
+    );
+    return data;
+  }
+  const { isLoading, data } = useQuery("users", fetchPosts);
+
+  console.log(data);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://jsonplaceholder.typicode.com/posts/1")
+  //     .then((res) => console.log(res));
+  // }, []);
 
   return (
     <div>
