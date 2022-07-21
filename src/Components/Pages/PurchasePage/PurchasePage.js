@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import auth from "../../../firebase.init";
 
 const PurchasePage = () => {
   const [user] = useAuthState(auth);
+  const [qty, setQty] = useState(1);
 
   // form
   const {
@@ -37,25 +38,33 @@ const PurchasePage = () => {
             <div className="flex items-center p-1">
               <span className="label-text w-48 text-md">Quantity</span>
               <div className="flex justify-center w-1/5">
-                <div className="btn btn-sm font-bold">+</div>
+                <div
+                  className="btn btn-sm font-bold"
+                  onClick={() => setQty((prev) => parseInt(prev) + 1)}
+                >
+                  +
+                </div>
                 <input
                   className="mx-2 border text-center w-8"
                   type="number"
-                  value="10"
+                  value={qty}
                   min="10"
                   {...register("qty", {
                     required: true,
                   })}
                 />
-                <div className="btn btn-sm font-bold ">-</div>
+                <div
+                  className="btn btn-sm font-bold"
+                  onClick={() => setQty((prev) => parseInt(prev) - 1)}
+                >
+                  -
+                </div>
               </div>
             </div>
 
             {/* your email */}
             <div className="space-y-2">
-              <label className="text-sm font-medium   tracking-wide">
-                Email
-              </label>
+              <label className="text-sm font-medium tracking-wide">Email</label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 type="email"
