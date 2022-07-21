@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const ProductSection = () => {
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -27,9 +27,12 @@ const ProductSection = () => {
           <span className="text-md badge ">2000000</span>pcs
         </div>
         <div className="card-actions justify-center">
-          <button className="btn btn-secondary btn-block space-x-2">
+          <Link
+            className="btn btn-secondary btn-block space-x-2"
+            to="/purchase"
+          >
             Buy Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import PurchasePage from "../PurchasePage/Purchase-page";
 import ProductSection from "./Product-section";
 
 const HomePage = () => {
@@ -12,8 +11,7 @@ const HomePage = () => {
   return (
     <div>
       <p className="text-center text-4xl">HomePage</p>
-      {/* product form card */}
-      <PurchasePage />
+
       {/* product card */}
 
       <ProductSection />
