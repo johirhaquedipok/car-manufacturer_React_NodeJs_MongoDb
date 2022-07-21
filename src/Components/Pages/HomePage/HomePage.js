@@ -12,12 +12,11 @@ const HomePage = () => {
   return (
     <div>
       <p className="text-center text-4xl">HomePage</p>
+      {/* product form card */}
+      <PurchasePage />
       {/* product card */}
-      <div className="flex gap-4">
-        <ProductSection />
-        {/* product form card */}
-        <PurchasePage />
-      </div>
+
+      <ProductSection />
 
       {/* example */}
       <button
