@@ -5,7 +5,8 @@ import auth from "../../../firebase.init";
 
 const PurchasePage = () => {
   const [user] = useAuthState(auth);
-  const [qty, setQty] = useState(1);
+  const qtyValue = 20;
+  const [qty, setQty] = useState(qtyValue);
 
   // form
   const {
@@ -17,6 +18,16 @@ const PurchasePage = () => {
   // sing in with email and password
   const onSubmit = async (data) => {
     console.log(data);
+  };
+
+  //   delet qty
+  const handleDelete = () => {
+    // () => setQty((prev) => parseInt(prev) - 1)
+    if (qty > qtyValue) {
+      setQty((prev) => parseInt(prev) - 1);
+    } else {
+      alert("you can not do that");
+    }
   };
   return (
     <div className="flex">
@@ -48,15 +59,12 @@ const PurchasePage = () => {
                   className="mx-2 border text-center w-8"
                   type="number"
                   value={qty}
-                  min="10"
+                  min="qty"
                   {...register("qty", {
                     required: true,
                   })}
                 />
-                <div
-                  className="btn btn-sm font-bold"
-                  onClick={() => setQty((prev) => parseInt(prev) - 1)}
-                >
+                <div className="btn btn-sm font-bold" onClick={handleDelete}>
                   -
                 </div>
               </div>
