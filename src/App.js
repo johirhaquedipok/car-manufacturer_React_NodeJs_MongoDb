@@ -16,6 +16,7 @@ import Blog from "./Components/Pages/Blog/Blog";
 import HomePage from "./Components/Pages/HomePage/HomePage";
 import NotFound from "./Components/Pages/NotFound/NotFound";
 import Portfolio from "./Components/Pages/Portfolio/Portfolio";
+import PurchasePage from "./Components/Pages/PurchasePage/PurchasePage";
 import Footer from "./Components/Pages/shared/Footer";
 import Navbar from "./Components/Pages/shared/Navbar";
 function App() {
@@ -28,13 +29,21 @@ function App() {
         <Route path="home" element={<HomePage />} />
         <Route path="blog" element={<Blog />} />
         <Route path="portfolio" element={<Portfolio />} />
+        <Route
+          path="purchase"
+          element={
+            <RequireAuth>
+              <PurchasePage />
+            </RequireAuth>
+          }
+        />
 
         {/* auth based routes for all users */}
         <Route
           path="dashboard"
           element={
             <RequireAuth>
-              <Dashboard />{" "}
+              <Dashboard />
             </RequireAuth>
           }
         >
