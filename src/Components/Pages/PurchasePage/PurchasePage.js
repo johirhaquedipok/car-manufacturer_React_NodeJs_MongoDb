@@ -1,34 +1,57 @@
-import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import auth from "../../../firebase.init";
+import { useParams } from "react-router-dom";
+import Loading from "../../Utilities/Loading";
 
 const PurchasePage = () => {
-  const [user] = useAuthState(auth);
-  const qtyValue = 20;
-  const [qty, setQty] = useState(qtyValue);
+  const params = useParams();
 
+  // get data from parms id
+  const { data: product, isLoading } = useQuery(["singleData"], async () => {
+    return await axios.get(`http://localhost:5000/products/${params.id}`);
+  });
+
+  const [qty, setQty] = useState(0);
+  useEffect(() => {
+    setQty(product?.data?.minimumOrderQty);
+  }, [product]);
   // form
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+  // loading
+  if (isLoading) {
+    return <Loading />;
+  }
 
   // sing in with email and password
   const onSubmit = async (data) => {
     console.log(data);
   };
+  console.log(qty);
 
   //   delet qty
-  const handleDelete = () => {
+  const handleAddQty = () => {
+    if (qty < product?.data?.availableQty) {
+      setQty((prev) => parseInt(prev) + 1);
+    } else {
+      alert("you can not do that");
+    }
+  };
+  //   delet qty
+  const handleDeleteQty = () => {
     // () => setQty((prev) => parseInt(prev) - 1)
-    if (qty > qtyValue) {
+    if (qty > product?.data?.minimumOrderQty) {
       setQty((prev) => parseInt(prev) - 1);
     } else {
       alert("you can not do that");
     }
   };
+
   return (
     <div className="flex">
       {/* card 3 */}
@@ -37,9 +60,8 @@ const PurchasePage = () => {
           <img src="https://placeimg.com/200/280/arch" alt="Movie" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Place and Order</h2>
-          <h3 className="card-title"> Product Name </h3>
-          <p>Fil all the details about the you and the product...</p>
+          <h2 className="card-title">{product?.data?.partsName}</h2>
+          <p>{product?.data?.description.slice(0, 150)}</p>
           {/* product details */}
 
           {/* form */}
@@ -47,24 +69,20 @@ const PurchasePage = () => {
           <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
             {/* order quantity */}
             <div className="flex items-center p-1">
-              <span className="label-text w-48 text-md">Quantity</span>
+              <span className="label-text w-48 text-md">Minmum Quantity</span>
               <div className="flex justify-center w-1/5">
-                <div
-                  className="btn btn-sm font-bold"
-                  onClick={() => setQty((prev) => parseInt(prev) + 1)}
-                >
+                <div className="btn btn-sm font-bold" onClick={handleAddQty}>
                   +
                 </div>
                 <input
-                  className="mx-2 border text-center w-8"
-                  type="number"
+                  className="mx-2 border text-center w-12"
+                  type="text"
                   value={qty}
-                  min="qty"
-                  {...register("qty", {
+                  {...register("orderedQty", {
                     required: true,
                   })}
                 />
-                <div className="btn btn-sm font-bold" onClick={handleDelete}>
+                <div className="btn btn-sm font-bold" onClick={handleDeleteQty}>
                   -
                 </div>
               </div>

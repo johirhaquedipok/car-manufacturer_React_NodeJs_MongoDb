@@ -30,7 +30,7 @@ function App() {
         <Route path="blog" element={<Blog />} />
         <Route path="portfolio" element={<Portfolio />} />
         <Route
-          path="purchase"
+          path="purchase/:id"
           element={
             <RequireAuth>
               <PurchasePage />

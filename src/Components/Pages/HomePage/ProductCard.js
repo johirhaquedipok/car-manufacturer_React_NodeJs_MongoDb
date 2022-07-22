@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => {
         <div className="card-actions justify-center">
           <Link
             className="btn btn-secondary btn-block space-x-2"
-            to="/purchase"
+            to={`/purchase/${product?._id}`}
           >
             Buy Now
           </Link>
