@@ -32,13 +32,13 @@ const PurchasePage = () => {
   return (
     <div className="flex">
       {/* card 3 */}
-      <div class="card card-side bg-base-100 shadow-xl">
-        <figure class="px-7 ">
+      <div className="card card-side bg-base-100 shadow-xl">
+        <figure className="px-7 ">
           <img src="https://placeimg.com/200/280/arch" alt="Movie" />
         </figure>
-        <div class="card-body">
-          <h2 class="card-title">Place and Order</h2>
-          <h3 class="card-title"> Product Name </h3>
+        <div className="card-body">
+          <h2 className="card-title">Place and Order</h2>
+          <h3 className="card-title"> Product Name </h3>
           <p>Fil all the details about the you and the product...</p>
           {/* product details */}
 
@@ -122,8 +122,8 @@ const PurchasePage = () => {
               )}
             </div>
 
-            <div class="card-actions  justify-center">
-              <button type="submit" class="btn btn-primary btn-block">
+            <div className="card-actions  justify-center">
+              <button type="submit" className="btn btn-primary btn-block">
                 Purchase
               </button>
             </div>
