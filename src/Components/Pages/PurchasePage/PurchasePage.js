@@ -27,12 +27,11 @@ const PurchasePage = () => {
     },
   });
   // update quantity field after fetching data
+  const orderedQty = watch("orderedQty");
+  // update quantity field after fetching data
   useEffect(() => {
     setValue("orderedQty", product?.data?.minimumOrderQty);
   }, [setValue, product?.data?.minimumOrderQty]);
-
-  // update quantity field after fetching data
-  const orderedQty = watch("orderedQty");
 
   // loading
   if (isLoading) {
@@ -89,6 +88,7 @@ const PurchasePage = () => {
                   type="text"
                   {...register("orderedQty", {
                     required: true,
+
                     /*  validate: {
                       minqty: (value) => parseInt(value) > 735,
                       maxqty: (value) => parseInt(value) < 800,
@@ -99,12 +99,6 @@ const PurchasePage = () => {
                   -
                 </div>
               </div>
-              {/* ||
-                errors?.orderedQty.type === "minqty" ||
-                errors?.orderedQty.type === "maxqty") */}
-              {/*  {errors?.orderedQty.type === "minqty" && (
-                <p className="text-error">Error</p>
-              )} */}
             </div>
 
             {/* example end */}
