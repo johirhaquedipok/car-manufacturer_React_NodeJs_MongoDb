@@ -87,25 +87,24 @@ const PurchasePage = () => {
                 <input
                   className="mx-2 border text-center w-12"
                   type="text"
-                  // placeholder={product?.data?.minimumOrderQty}
-                  // defalultvalue={product?.data?.minimumOrderQty}
                   {...register("orderedQty", {
                     required: true,
-                    minqty: (value) =>
-                      parseFloat(value) > product?.data?.minimumOrderQty,
-                    maxqty: (value) =>
-                      parseFloat(value) < product?.data?.availableQty,
+                    /*  validate: {
+                      minqty: (value) => parseInt(value) > 735,
+                      maxqty: (value) => parseInt(value) < 800,
+                    }, */
                   })}
                 />
                 <div className="btn btn-sm font-bold" onClick={handleDeleteQty}>
                   -
                 </div>
               </div>
-              {(errors.orderedQty?.type === "required" ||
-                errors?.orderedQty === "min" ||
-                errors?.orderedQty === "max") && (
+              {/* ||
+                errors?.orderedQty.type === "minqty" ||
+                errors?.orderedQty.type === "maxqty") */}
+              {/*  {errors?.orderedQty.type === "minqty" && (
                 <p className="text-error">Error</p>
-              )}
+              )} */}
             </div>
 
             {/* example end */}
@@ -128,7 +127,7 @@ const PurchasePage = () => {
 
             {/* your phone number*/}
             <div className="space-y-2">
-              <label className="text-sm font-medium   tracking-wide">
+              <label className="text-sm font-medium tracking-wide">
                 Phone No
               </label>
               <input
