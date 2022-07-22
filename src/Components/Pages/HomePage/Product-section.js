@@ -1,8 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { createContext } from "react";
+
 import Loading from "../../Utilities/Loading";
 import ProductCard from "./ProductCard";
+
+export const ProductContext = createContext({
+  product: null,
+});
 
 const ProductSection = () => {
   const {
@@ -21,7 +26,6 @@ const ProductSection = () => {
       {products?.data?.map((product) => (
         <ProductCard key={product?._id} product={product} />
       ))}
-      <ProductCard />
     </div>
   );
 };
