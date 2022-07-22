@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Loading from "../../Utilities/Loading";
@@ -13,16 +13,27 @@ const PurchasePage = () => {
     return await axios.get(`http://localhost:5000/products/${params.id}`);
   });
 
-  const [qty, setQty] = useState(0);
-  useEffect(() => {
-    setQty(product?.data?.minimumOrderQty);
-  }, [product]);
   // form
   const {
     register,
+    watch,
+    setValue,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+    reset,
+  } = useForm({
+    defaultValues: {
+      orderedQty: product?.data?.minimumOrderQty,
+    },
+  });
+  // update quantity field after fetching data
+  useEffect(() => {
+    setValue("orderedQty", product?.data?.minimumOrderQty);
+  }, [setValue, product?.data?.minimumOrderQty]);
+
+  // update quantity field after fetching data
+  const orderedQty = watch("orderedQty");
+
   // loading
   if (isLoading) {
     return <Loading />;
@@ -32,21 +43,20 @@ const PurchasePage = () => {
   const onSubmit = async (data) => {
     console.log(data);
   };
-  console.log(qty);
 
-  //   delet qty
-  const handleAddQty = () => {
-    if (qty < product?.data?.availableQty) {
-      setQty((prev) => parseInt(prev) + 1);
+  //   add  qty
+  const handleAddQty = (e) => {
+    if (orderedQty < product?.data?.availableQty) {
+      setValue("orderedQty", +orderedQty + 1);
     } else {
       alert("you can not do that");
     }
   };
+
   //   delet qty
-  const handleDeleteQty = () => {
-    // () => setQty((prev) => parseInt(prev) - 1)
-    if (qty > product?.data?.minimumOrderQty) {
-      setQty((prev) => parseInt(prev) - 1);
+  const handleDeleteQty = (e) => {
+    if (orderedQty > product?.data?.minimumOrderQty) {
+      setValue("orderedQty", parseInt(orderedQty - 1));
     } else {
       alert("you can not do that");
     }
@@ -77,16 +87,28 @@ const PurchasePage = () => {
                 <input
                   className="mx-2 border text-center w-12"
                   type="text"
-                  value={qty}
+                  // placeholder={product?.data?.minimumOrderQty}
+                  // defalultvalue={product?.data?.minimumOrderQty}
                   {...register("orderedQty", {
                     required: true,
+                    minqty: (value) =>
+                      parseFloat(value) > product?.data?.minimumOrderQty,
+                    maxqty: (value) =>
+                      parseFloat(value) < product?.data?.availableQty,
                   })}
                 />
                 <div className="btn btn-sm font-bold" onClick={handleDeleteQty}>
                   -
                 </div>
               </div>
+              {(errors.orderedQty?.type === "required" ||
+                errors?.orderedQty === "min" ||
+                errors?.orderedQty === "max") && (
+                <p className="text-error">Error</p>
+              )}
             </div>
+
+            {/* example end */}
 
             {/* your email */}
             <div className="space-y-2">
