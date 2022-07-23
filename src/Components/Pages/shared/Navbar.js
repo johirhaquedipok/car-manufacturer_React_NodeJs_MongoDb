@@ -63,7 +63,7 @@ const Navbar = () => {
             SoniKon
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden md:flex">
           <ul className="menu menu-horizontal p-0">
             <li>
               <CustomLink to="/home">Home</CustomLink>

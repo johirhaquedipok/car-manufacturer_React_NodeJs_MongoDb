@@ -1,26 +1,28 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { client } from "../../Utilities/axios-utils";
 import Loading from "../../Utilities/Loading";
 
 const PurchasePage = () => {
   const params = useParams();
-
+  const date = format(new Date(), "PP");
   // get data from parms id
   const { data: product, isLoading } = useQuery(["singleData"], async () => {
     return await client.get(`/products/${params.id}`);
   });
-  // get data from parms id
+
+  // post data to the server
   const { mutate, isLoading1 } = useMutation(
     async (value) => {
-      return await client.post(`/users-ordered-products`, {
-        value,
-      });
+      return await client.post(`/users-ordered-products`, value);
     },
     {
       onSuccess: (data) => {
+        if (data?.data?.success === true) toast.success("success");
         console.log(data);
       },
       onError: () => {
@@ -63,6 +65,7 @@ const PurchasePage = () => {
           productId: product?.data?._id,
           orderedQty: data.orderedQty,
           partsName: product?.data?.partsName,
+          orderDate: date,
         },
       ],
 
