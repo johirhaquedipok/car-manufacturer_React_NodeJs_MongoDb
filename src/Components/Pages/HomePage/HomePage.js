@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import ProductSection from "./Product-section";
+import ReviewSection from "./Review-section";
 
 const HomePage = () => {
   const handleUseQuery = () => {
@@ -15,6 +16,10 @@ const HomePage = () => {
       {/* product card */}
 
       <ProductSection />
+
+      {/* review Section */}
+
+      <ReviewSection />
 
       {/* example */}
       <button

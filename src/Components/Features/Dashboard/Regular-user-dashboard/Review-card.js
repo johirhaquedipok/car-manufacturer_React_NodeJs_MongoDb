@@ -61,7 +61,7 @@ const ReviewCard = ({ rating, setRating }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="pb-2 justify-center">
               <textarea
-                class="textarea textarea-bordered h-24 w-full"
+                className="textarea textarea-bordered h-24 w-full"
                 placeholder="write your review"
                 {...register("review", {
                   required: true,

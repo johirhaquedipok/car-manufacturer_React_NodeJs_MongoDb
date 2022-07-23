@@ -1,13 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import React, { createContext } from "react";
+import React from "react";
+import { client } from "../../Utilities/axios-utils";
 
 import Loading from "../../Utilities/Loading";
 import ProductCard from "./ProductCard";
-
-export const ProductContext = createContext({
-  product: null,
-});
 
 const ProductSection = () => {
   const {
@@ -15,8 +11,9 @@ const ProductSection = () => {
     isLoading,
     refetch,
   } = useQuery(["primarydata"], async () => {
-    return await axios.get("http://localhost:5000/products");
+    return await client.get("/products");
   });
+
   if (isLoading) {
     return <Loading />;
   }
