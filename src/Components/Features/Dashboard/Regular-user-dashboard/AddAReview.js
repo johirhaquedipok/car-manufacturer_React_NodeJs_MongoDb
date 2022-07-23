@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import StarRating from "./Star-rating";
+import ReviewCard from "./Review-card";
 
 const AddAReview = () => {
-  const [rating, setRating] = useState(0);
-  console.log(rating);
+  const [rating, setRating] = useState(5);
+
   return (
     <div>
       <p className="text-center text-4xl">Add A Review</p>
-      <StarRating rating={rating} setRating={setRating} />
+      <ReviewCard rating={rating} setRating={setRating} />
+
       {/* starts */}
     </div>
   );

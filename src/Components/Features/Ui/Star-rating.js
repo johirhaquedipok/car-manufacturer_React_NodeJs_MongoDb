@@ -11,10 +11,7 @@ const StarRating = ({ rating, setRating }) => {
             type="radio"
             name="rating-1"
             value={ratingValue}
-            // checked={rating === ratingValue}
-            className={`mask mask-star  ${
-              ratingValue <= rating && "mask-star"
-            }`}
+            className={`mask mask-star`}
             onClick={() => setRating(ratingValue)}
           />
         );
