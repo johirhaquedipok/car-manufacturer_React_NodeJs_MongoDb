@@ -75,7 +75,6 @@ const PurchasePage = () => {
       userAddress: data.address,
     };
     mutate(productOrder);
-    console.log(productOrder);
   };
 
   //   add  qty

@@ -19,6 +19,7 @@
     "react-icon": "^1.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-star-rating-component": "^1.4.1",
     "react-toastify": "^9.0.6",
     "tailwindcss-gradient": "^1.0.1",
     "theme-change": "^2.1.0",
