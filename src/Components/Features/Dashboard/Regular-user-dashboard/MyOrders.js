@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
@@ -12,9 +12,6 @@ const MyOrders = () => {
   const { data: products, isLoading } = useQuery(["myorders"], async () => {
     return await authClient.get(`/users-ordered-products/${user?.email}`);
   });
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   if (isLoading) {
     return <Loading />;

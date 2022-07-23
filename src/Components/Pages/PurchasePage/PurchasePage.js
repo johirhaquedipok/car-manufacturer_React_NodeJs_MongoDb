@@ -66,6 +66,7 @@ const PurchasePage = () => {
           orderedQty: data.orderedQty,
           partsName: product?.data?.partsName,
           orderDate: date,
+          img: product?.data?.img,
         },
       ],
 
@@ -100,7 +101,7 @@ const PurchasePage = () => {
       {/* card 3 */}
       <div className="card card-side bg-base-100 shadow-xl">
         <figure className="px-7 ">
-          <img src="https://placeimg.com/200/280/arch" alt="Movie" />
+          <img src={product?.data?.img} alt={product?.data?.partsName} />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{product?.data?.partsName}</h2>
