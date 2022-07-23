@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
+import useToken from "./useToken";
 
 const SignUp = () => {
   // checkbox state
@@ -27,6 +28,8 @@ const SignUp = () => {
   // update name
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  // use token form navite user
+  const [token] = useToken(guser || user);
   // navigate
   const navigate = useNavigate();
   // location
@@ -34,10 +37,10 @@ const SignUp = () => {
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (guser || user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [navigate, user, guser, from]);
+  }, [navigate, token, from]);
 
   // form
   const {

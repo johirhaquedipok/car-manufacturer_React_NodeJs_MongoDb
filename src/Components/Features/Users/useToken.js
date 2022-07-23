@@ -10,7 +10,6 @@ const useToken = (user) => {
       const jotToken = async (email) => {
         const { data } = await client.post(`/signin`, { email });
         localStorage.setItem("accessToken", data.accessToken);
-        console.log(data.accessToken);
         return setToken(data.accessToken);
       };
       jotToken(email);
