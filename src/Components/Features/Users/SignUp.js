@@ -8,9 +8,9 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
-import useToken from "./useToken";
 
 const SignUp = () => {
   // checkbox state

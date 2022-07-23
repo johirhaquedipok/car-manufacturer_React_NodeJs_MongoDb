@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { client } from "../../Utilities/axios-utils";
 import Loading from "../../Utilities/Loading";
 
 const PurchasePage = () => {
@@ -10,8 +10,24 @@ const PurchasePage = () => {
 
   // get data from parms id
   const { data: product, isLoading } = useQuery(["singleData"], async () => {
-    return await axios.get(`http://localhost:5000/products/${params.id}`);
+    return await client.get(`/products/${params.id}`);
   });
+  // get data from parms id
+  const { mutate, isLoading1 } = useMutation(
+    async (value) => {
+      return await client.post(`/users-ordered-products`, {
+        value,
+      });
+    },
+    {
+      onSuccess: (data) => {
+        console.log(data);
+      },
+      onError: () => {
+        alert("there was an error");
+      },
+    }
+  );
 
   // form
   const {
@@ -28,19 +44,34 @@ const PurchasePage = () => {
   });
   // update quantity field after fetching data
   const orderedQty = watch("orderedQty");
+
   // update quantity field after fetching data
   useEffect(() => {
     setValue("orderedQty", product?.data?.minimumOrderQty);
   }, [setValue, product?.data?.minimumOrderQty]);
 
   // loading
-  if (isLoading) {
+  if (isLoading || isLoading1) {
     return <Loading />;
   }
 
   // sing in with email and password
   const onSubmit = async (data) => {
-    console.log(data);
+    const productOrder = {
+      productDetails: [
+        {
+          productId: product?.data?._id,
+          orderedQty: data.orderedQty,
+          partsName: product?.data?.partsName,
+        },
+      ],
+
+      userEmail: data.email,
+      userPhone: data.phone,
+      userAddress: data.address,
+    };
+    mutate(productOrder);
+    console.log(productOrder);
   };
 
   //   add  qty
