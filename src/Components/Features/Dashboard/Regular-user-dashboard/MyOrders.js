@@ -23,7 +23,6 @@ const MyOrders = () => {
   return (
     <div>
       <p className="text-center text-4xl">My orders</p>
-
       <MyOrdersTable products={products.data} />
     </div>
   );

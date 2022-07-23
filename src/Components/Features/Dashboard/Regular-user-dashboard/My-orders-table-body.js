@@ -20,6 +20,7 @@ const MyOrdersTableBody = ({ product, idx }) => {
         </div>
       </td>
       <td>{product?.orderedQty}</td>
+      <td>{product?.orderDate}</td>
 
       <th>
         <button className="btn btn-ghost btn-xs">Cancel</button>

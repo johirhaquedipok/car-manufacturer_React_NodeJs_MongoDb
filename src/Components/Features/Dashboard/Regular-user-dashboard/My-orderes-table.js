@@ -11,7 +11,7 @@ const MyOrdersTable = ({ products }) => {
             <th>Product No</th>
             <th>Product Name</th>
             <th>Orderd Qty</th>
-
+            <th>Orderd Date</th>
             <th>Cancel Order</th>
           </tr>
         </thead>
@@ -19,7 +19,7 @@ const MyOrdersTable = ({ products }) => {
           {/* <!-- row  --> */}
           {products?.productDetails.map((product, idx) => (
             <MyOrdersTableBody
-              key={product.productId}
+              key={product.productId + idx}
               product={product}
               idx={idx}
             />
