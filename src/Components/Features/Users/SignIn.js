@@ -8,9 +8,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
+import useToken from "./useToken";
 const SignIn = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-
   // sing in with email and password
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -27,6 +27,8 @@ const SignIn = () => {
     await signInWithEmailAndPassword(data.email, data.password);
   };
 
+  // use token form navite user
+  const [token] = useToken(guser || user);
   // navigate
   const navigate = useNavigate();
   // location
@@ -37,7 +39,7 @@ const SignIn = () => {
     return <Loading />;
   }
 
-  if (guser || user) {
+  if (token) {
     navigate(from, { replace: true });
   }
 

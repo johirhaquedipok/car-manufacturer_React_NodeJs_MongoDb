@@ -1,13 +1,14 @@
 import axios from "axios";
 export default axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: "http://localhost:5000/",
   headers: {
     "Content-type": "application/json",
   },
 });
 
-const client = axios.create("https://jsonplaceholder.typicode.com");
-export const request = ({ ...options }) => {
+export const client = axios.create({ baseURL: "http://localhost:5000" });
+
+/* export const request = async ({ ...options }) => {
   client.head.Authorization = ` Bearer token`;
   const onSuccess = (response) => response;
   const onError = (err) => {
@@ -15,9 +16,14 @@ export const request = ({ ...options }) => {
     return err;
   };
 
-  return client(options).then(onSuccess).catch(onError);
+  try {
+    const response = await client(options);
+    return onSuccess(response);
+  } catch (err) {
+    return onError(err);
+  }
 };
-
+ */
 /* 
 call the data
 
