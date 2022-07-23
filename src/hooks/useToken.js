@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { client } from "../../Utilities/axios-utils";
+import { client } from "../Components/Utilities/axios-utils";
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
