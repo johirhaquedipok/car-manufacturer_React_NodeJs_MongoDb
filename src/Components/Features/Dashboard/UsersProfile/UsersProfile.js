@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -7,9 +7,16 @@ import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
+import UserDetaisl from "./User-detaisl";
 
 const UsersProfile = ({ product }) => {
   const [user] = useAuthState(auth);
+
+  // load user data from db
+  const { data: userProfile } = useQuery(["userprofile"], async () => {
+    return await authClient.get(`/users-profile/${user?.email}`);
+  });
+
   // post data to the server
   const { mutate, isLoading } = useMutation(
     async (value) => {
@@ -96,121 +103,124 @@ const UsersProfile = ({ product }) => {
   };
 
   return (
-    <div>
-      <p className="text-center text-4xl">Users Profile</p>
-      <div className="flex">
-        {/* card 3 */}
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure className="px-7 ">
-            <img src={product?.data?.img} alt={product?.data?.partsName} />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">{product?.data?.partsName}</h2>
-            <p>{product?.data?.description.slice(0, 150)}</p>
-            {/* product details */}
+    <>
+      <UserDetaisl userProfile={userProfile?.data} />
+      <div>
+        {/* user profile card */}
 
-            {/* form */}
+        {/* user profile form to update */}
+        <p className="text-center text-4xl">Update Profile</p>
+        <div className="flex">
+          <div className="card card-side bg-base-100 shadow-xl">
+            <figure className="px-7 ">
+              <img src={product?.data?.img} alt={product?.data?.partsName} />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">{product?.data?.partsName}</h2>
+              <p>{product?.data?.description.slice(0, 150)}</p>
 
-            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
-              {/* your email */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium tracking-wide">
-                  Name
-                </label>
-                <input
-                  className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                  type="name"
-                  placeholder="Your Name"
-                  {...register("name", {
-                    required: true,
-                  })}
-                />
-                {errors.name?.type === "required" && (
-                  <p className="text-error">Name is required</p>
-                )}
-              </div>
-              {/* your email */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium tracking-wide">
-                  Email
-                </label>
-                <input
-                  className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                  type="email"
-                  placeholder="Your Email"
-                  {...register("email", {
-                    required: true,
-                  })}
-                />
-                {errors.email?.type === "required" && (
-                  <p className="text-error">Email is required</p>
-                )}
-              </div>
+              {/* user profile form */}
+              <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+                {/* your name */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium tracking-wide">
+                    Name
+                  </label>
+                  <input
+                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    type="name"
+                    placeholder="Your Name"
+                    {...register("name", {
+                      required: true,
+                    })}
+                  />
+                  {errors.name?.type === "required" && (
+                    <p className="text-error">Name is required</p>
+                  )}
+                </div>
+                {/* your email */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium tracking-wide">
+                    Email
+                  </label>
+                  <input
+                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    type="email"
+                    placeholder="Your Email"
+                    {...register("email", {
+                      required: true,
+                    })}
+                  />
+                  {errors.email?.type === "required" && (
+                    <p className="text-error">Email is required</p>
+                  )}
+                </div>
 
-              {/* your phone number*/}
-              <div className="space-y-2">
-                <label className="text-sm font-medium tracking-wide">
-                  Phone No
-                </label>
-                <input
-                  className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                  type="number"
-                  placeholder="Your Phone No"
-                  {...register("phone", {
-                    required: true,
-                  })}
-                />
-                {errors.phone?.type === "required" && (
-                  <p className="text-error">Phone No is required</p>
-                )}
-              </div>
+                {/* your phone number*/}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium tracking-wide">
+                    Phone No
+                  </label>
+                  <input
+                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    type="number"
+                    placeholder="Your Phone No"
+                    {...register("phone", {
+                      required: true,
+                    })}
+                  />
+                  {errors.phone?.type === "required" && (
+                    <p className="text-error">Phone No is required</p>
+                  )}
+                </div>
 
-              {/* your address*/}
-              <div className="space-y-2">
-                <label className="text-sm font-medium tracking-wide">
-                  Your Address
-                </label>
-                <input
-                  className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                  type="text"
-                  placeholder="Your Address"
-                  {...register("address", {
-                    required: true,
-                  })}
-                />
-                {errors.address?.type === "required" && (
-                  <p className="text-error">Address is required</p>
-                )}
-              </div>
+                {/* your address*/}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium tracking-wide">
+                    Your Address
+                  </label>
+                  <input
+                    className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    type="text"
+                    placeholder="Your Address"
+                    {...register("address", {
+                      required: true,
+                    })}
+                  />
+                  {errors.address?.type === "required" && (
+                    <p className="text-error">Address is required</p>
+                  )}
+                </div>
 
-              {/* your profile picture*/}
-              <div className="space-y-2">
-                <label className="text-sm font-medium tracking-wide">
-                  Your Profile Photo
-                </label>
-                <input
-                  className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                  type="file"
-                  placeholder="Your Photo"
-                  {...register("photo", {
-                    required: true,
-                  })}
-                />
-                {errors.photo?.type === "required" && (
-                  <p className="text-error">Photo is required</p>
-                )}
-              </div>
+                {/* your profile picture*/}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium tracking-wide">
+                    Your Profile Photo
+                  </label>
+                  <input
+                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    type="file"
+                    placeholder="Your Photo"
+                    {...register("photo", {
+                      required: true,
+                    })}
+                  />
+                  {errors.photo?.type === "required" && (
+                    <p className="text-error">Photo is required</p>
+                  )}
+                </div>
 
-              <div className="card-actions  justify-center">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Update Your Profile
-                </button>
-              </div>
-            </form>
+                <div className="card-actions  justify-center">
+                  <button type="submit" className="btn btn-primary btn-block">
+                    Update Your Profile
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
