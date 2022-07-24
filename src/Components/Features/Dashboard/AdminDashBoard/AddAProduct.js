@@ -66,65 +66,70 @@ const AddAProduct = () => {
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type="name"
+                type="text"
                 placeholder="Parts Name"
                 {...register("partsName", {
                   required: true,
                 })}
               />
-              {errors.name?.type === "required" && (
-                <p className="text-error">Name is required</p>
+              {errors.partsName?.type === "required" && (
+                <p className="text-error">parts Name is required</p>
               )}
             </div>
             {/* your email */}
             <div className="space-y-2">
-              <label className="text-sm font-medium tracking-wide">Email</label>
+              <label className="text-sm font-medium tracking-wide">
+                Company Name
+              </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type="email"
-                placeholder="Your Email"
-                {...register("email", {
+                type="text"
+                placeholder="Company Name"
+                {...register("company", {
                   required: true,
                 })}
               />
-              {errors.email?.type === "required" && (
-                <p className="text-error">Email is required</p>
+              {errors.company?.type === "required" && (
+                <p className="text-error">
+                  Company Name is required is required
+                </p>
               )}
             </div>
 
             {/* your phone number*/}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
-                Phone No
+                Price per Unit
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type="number"
-                placeholder="Your Phone No"
+                type="text"
+                placeholder="Price Per Unit"
                 {...register("phone", {
                   required: true,
                 })}
               />
-              {errors.phone?.type === "required" && (
-                <p className="text-error">Phone No is required</p>
+              {errors.pricePerUnit?.type === "required" && (
+                <p className="text-error">Price per unit is required</p>
               )}
             </div>
 
             {/* your address*/}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
-                Your Address
+                Minimum Order Qty
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type="text"
-                placeholder="Your Address"
-                {...register("address", {
+                type="number"
+                placeholder="Minimum Order Qty"
+                min={1}
+                {...register("minimumOrderQty", {
                   required: true,
                 })}
               />
-              {errors.address?.type === "required" && (
-                <p className="text-error">Address is required</p>
+              {errors.minimumOrderQty?.type === "required" && (
+                <p className="text-error">minimum Order Qty is required</p>
               )}
             </div>
 
