@@ -42,14 +42,14 @@ const AddAProduct = () => {
     const productOrder = {
       availableQty: data.availableQty,
       minimumOrderQty: data.minimumOrderQty,
-      price: data.price,
       pricePerUnit: data.pricePerUnit,
       img: data.img,
       partsName: data.partsName,
       company: data.company,
       description: data.description,
     };
-    mutate(productOrder);
+    // mutate(productOrder);
+    console.log(productOrder);
   };
 
   return (
@@ -57,9 +57,9 @@ const AddAProduct = () => {
       <p className="text-center text-4xl">Add A Product</p>
       <div>
         <div className="card card-side bg-base-100 shadow-xl">
-          {/* user profile form */}
+          {/* product form */}
           <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
-            {/* your name */}
+            {/* product name */}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
                 Parts Name
@@ -76,7 +76,7 @@ const AddAProduct = () => {
                 <p className="text-error">parts Name is required</p>
               )}
             </div>
-            {/* your email */}
+            {/* company name */}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
                 Company Name
@@ -96,25 +96,31 @@ const AddAProduct = () => {
               )}
             </div>
 
-            {/* your phone number*/}
+            {/* price per unit*/}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
                 Price per Unit
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type="text"
+                type="number"
                 placeholder="Price Per Unit"
-                {...register("phone", {
+                {...register("pricePerUnit", {
                   required: true,
+                  min: 1,
                 })}
               />
               {errors.pricePerUnit?.type === "required" && (
                 <p className="text-error">Price per unit is required</p>
               )}
+              {errors.pricePerUnit?.type < "min" && (
+                <p className="text-error">
+                  Price per unit can not be less than 1
+                </p>
+              )}
             </div>
 
-            {/* your address*/}
+            {/* minimum order qty*/}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
                 Minimum Order Qty
@@ -123,31 +129,74 @@ const AddAProduct = () => {
                 className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 type="number"
                 placeholder="Minimum Order Qty"
-                min={1}
                 {...register("minimumOrderQty", {
                   required: true,
+                  min: 1,
                 })}
               />
               {errors.minimumOrderQty?.type === "required" && (
                 <p className="text-error">minimum Order Qty is required</p>
               )}
+              {errors.minimumOrderQty?.type < "min" && (
+                <p className="text-error">
+                  minimum Order Qty can not be less than 1
+                </p>
+              )}
             </div>
-
-            {/* your profile picture*/}
+            {/* availabe qty*/}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
-                Your Profile Photo
+                Available Qty
+              </label>
+              <input
+                className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="number"
+                placeholder="Available Qty"
+                {...register("availableQty", {
+                  required: true,
+                  min: 1,
+                })}
+              />
+              {errors.availableQty?.type === "required" && (
+                <p className="text-error">Available Qty is required</p>
+              )}
+              {errors.availableQty?.type < "min" && (
+                <p className="text-error">Available Qty is required</p>
+              )}
+            </div>
+            {/* description*/}
+            <div className="space-y-2">
+              <label className="text-sm font-medium tracking-wide">
+                Product Description
+              </label>
+              <input
+                className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                type="text"
+                placeholder="description"
+                {...register("description", {
+                  required: true,
+                })}
+              />
+              {errors.description?.type === "required" && (
+                <p className="text-error">Available Qty is required</p>
+              )}
+            </div>
+
+            {/* product image*/}
+            <div className="space-y-2">
+              <label className="text-sm font-medium tracking-wide">
+                Product Image
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 type="file"
-                placeholder="Your Photo"
-                {...register("photo", {
+                placeholder="Product Image"
+                {...register("img", {
                   required: true,
                 })}
               />
-              {errors.photo?.type === "required" && (
-                <p className="text-error">Photo is required</p>
+              {errors.img?.type === "required" && (
+                <p className="text-error">Product image is required</p>
               )}
             </div>
             <div className="card-actions  justify-center">
