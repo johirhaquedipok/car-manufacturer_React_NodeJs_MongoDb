@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { authClient } from "../Components/Utilities/axios-utils";
+import { client } from "../Components/Utilities/axios-utils";
 
 const useAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
@@ -8,9 +8,10 @@ const useAdmin = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      const { data: userData } = authClient.get(`/admin/${email}`);
-      setAdmin(userData?.data.admin);
-      setAdminLoading(false);
+      client.get(`/admin/${email}`).then((data) => {
+        setAdmin(data?.data?.admin);
+        setAdminLoading(false);
+      });
     }
   }, [user]);
 

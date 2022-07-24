@@ -8,6 +8,7 @@ import Dashboard from "./Components/Features/Dashboard/Dashboard";
 import AddAReview from "./Components/Features/Dashboard/Regular-user-dashboard/AddAReview";
 import MyOrders from "./Components/Features/Dashboard/Regular-user-dashboard/MyOrders";
 import UsersProfile from "./Components/Features/Dashboard/UsersProfile/UsersProfile";
+import RequireAdmin from "./Components/Features/Users/RequireAdmin";
 import RequireAuth from "./Components/Features/Users/RequireAuth";
 import ResetPassword from "./Components/Features/Users/ResetPassword";
 import SignIn from "./Components/Features/Users/SignIn";
@@ -54,9 +55,30 @@ function App() {
           <Route path="myorders" element={<MyOrders />} />
 
           {/* auth based routes for Admin */}
-          <Route path="addaproduct" element={<AddAProduct />} />
-          <Route path="mangeallorders" element={<ManageAllOrders />} />
-          <Route path="mangeproducts" element={<ManageProducts />} />
+          <Route
+            path="addaproduct"
+            element={
+              <RequireAdmin>
+                <AddAProduct />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="mangeallorders"
+            element={
+              <RequireAdmin>
+                <ManageAllOrders />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="mangeproducts"
+            element={
+              <RequireAdmin>
+                <ManageProducts />
+              </RequireAdmin>
+            }
+          />
         </Route>
 
         {/* signin / sing up */}
