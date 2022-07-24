@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
-import UserDetaisl from "./User-detaisl";
+import UserDetaisl from "./User-details";
 
 const UsersProfile = ({ product }) => {
   const [user] = useAuthState(auth);
@@ -61,36 +61,6 @@ const UsersProfile = ({ product }) => {
     // post image to the db
     const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
     const { data: result } = await axios.post(url, formData);
-
-    /*   fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {
-          const img = result.data.url;
-
-          // send to your database
-          fetch(`http://localhost:5000/users-profile/:email`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("accesToken")}`,
-            },
-            body: JSON.stringify(profileData),
-          })
-            .then((res) => res.json())
-            .then((inserted) => {
-              if (inserted.insertedId) {
-                toast.success("Doctor added successfully");
-                reset();
-              } else {
-                toast.error("Failed to update the user");
-              }
-            });
-        }
-      }); */
 
     const profileData = {
       userEmail: data.email,
@@ -209,7 +179,6 @@ const UsersProfile = ({ product }) => {
                     <p className="text-error">Photo is required</p>
                   )}
                 </div>
-
                 <div className="card-actions  justify-center">
                   <button type="submit" className="btn btn-primary btn-block">
                     Update Your Profile

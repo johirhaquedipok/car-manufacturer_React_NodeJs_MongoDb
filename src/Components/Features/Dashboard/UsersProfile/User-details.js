@@ -19,7 +19,7 @@ const UserDetaisl = ({ userProfile }) => {
               </div>
               <div>
                 <div className="text-lg font-extrabold">
-                  {userProfile?.userName}
+                  {userProfile?.userName ? userProfile.userName : "User Name"}
                 </div>
                 <div className="text-base-content/70 text-sm">
                   {userProfile?.userEmail

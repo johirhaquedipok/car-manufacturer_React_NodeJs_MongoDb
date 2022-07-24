@@ -31,7 +31,7 @@ const RequireAuth = ({ children }) => {
   }
 
   // if email is not verified
-  /* email verificaton works properly but disables for instructors order */
+  /* email verificaton works properly but disabled for instructors request */
 
   /*   if (
     user?.providerData[0]?.providerId === "password" &&
