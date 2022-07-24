@@ -29,8 +29,8 @@ const UsersProfile = ({ product }) => {
         console.log(data);
       },
       onError: (data) => {
+        toast("there was an error user profile");
         console.log(data);
-        toast("there was an error");
       },
     }
   );
