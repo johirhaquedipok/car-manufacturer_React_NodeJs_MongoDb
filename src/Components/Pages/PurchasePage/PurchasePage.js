@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { client } from "../../Utilities/axios-utils";
+import { authClient, client } from "../../Utilities/axios-utils";
 import Loading from "../../Utilities/Loading";
 
 const PurchasePage = () => {
@@ -18,7 +18,7 @@ const PurchasePage = () => {
   // post data to the server
   const { mutate, isLoading1 } = useMutation(
     async (value) => {
-      return await client.post(`/users-ordered-products`, value);
+      return await authClient.post(`/users-ordered-products`, value);
     },
     {
       onSuccess: (data) => {
