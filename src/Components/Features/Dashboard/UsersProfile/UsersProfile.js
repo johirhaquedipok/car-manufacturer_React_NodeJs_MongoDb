@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -14,10 +15,12 @@ const UsersProfile = ({ product }) => {
     {
       onSuccess: (data) => {
         if (data?.data?.success === true) toast.success("success");
+        toast.success("profile updated");
         console.log(data);
       },
-      onError: () => {
-        alert("there was an error");
+      onError: (data) => {
+        console.log(data);
+        toast("there was an error");
       },
     }
   );
@@ -47,8 +50,9 @@ const UsersProfile = ({ product }) => {
 
     // post image to the db
     const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
-    // axios.post(url,formData,)
-    fetch(url, {
+    const { data: result } = await axios.post(url, formData);
+
+    /*   fetch(url, {
       method: "POST",
       body: formData,
     })
@@ -72,18 +76,18 @@ const UsersProfile = ({ product }) => {
                 toast.success("Doctor added successfully");
                 reset();
               } else {
-                toast.error("Failed to add the doctor");
+                toast.error("Failed to update the user");
               }
             });
         }
-      });
+      }); */
 
-    console.log(data);
     const profileData = {
       userEmail: data.email,
       userPhone: data.phone,
       userAddress: data.address,
       userName: data.name,
+      userPhoto: result?.data?.url,
     };
     mutate(profileData);
   };
