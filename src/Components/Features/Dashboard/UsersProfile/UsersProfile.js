@@ -1,16 +1,19 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
 
 const UsersProfile = ({ product }) => {
+  const [user] = useAuthState(auth);
   // post data to the server
   const { mutate, isLoading } = useMutation(
     async (value) => {
-      return await authClient.post(`/users-profile/:email`, value);
+      return await authClient.post(`/users-profile/${user?.email}`, value);
     },
     {
       onSuccess: (data) => {
