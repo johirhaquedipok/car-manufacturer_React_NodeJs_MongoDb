@@ -20,7 +20,7 @@ const UsersProfile = ({ product }) => {
   // post data to the server
   const { mutate, isLoading } = useMutation(
     async (value) => {
-      return await authClient.post(`/users-profile/${user?.email}`, value);
+      return await authClient.put(`/users-profile/${user?.email}`, value);
     },
     {
       onSuccess: (data) => {

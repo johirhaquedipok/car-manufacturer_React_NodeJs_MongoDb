@@ -36,7 +36,7 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 10. On the `Add A Review` page, users should be able to add a review. A review will contain ratings ( a number 1 to 5 and a description). That review will appear on the home page reviews section. Right now, you will see every review on the home page. There is no limit on the number of reviews or the order of the review.👍
 
-11. The `My profile` route will be available for every user (admin or non-admin. everyone will see this link). The user will see their name and email address on this profile in this link. Also, this page will have fields to add fields like education, location (city/district), phone number, LinkedIn profile link, etc. And users will be able to save this information in the database. Also, the user will be able to update this information.
+11. The `My profile` route will be available for every user (admin or non-admin. everyone will see this link). The user will see their name and email address on this profile in this link. Also, this page will have fields to add fields like education, location (city/district), phone number, LinkedIn profile link, etc. And users will be able to save this information in the database. Also, the user will be able to update this information.👍
 
 12. If an admin logs in, they will not see the options that a user sees except `My Profile`. This means an admin will not see my orders and add a review link. Instead, an admin will see `My Profile`, `Manage All Orders`, `Add A Product`, `Make Admin`, `Manage Products`. Based on your website idea, you can change the name of these menu names. Manage products will be described in the bonus section.
 
@@ -64,27 +64,27 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 ### Bonus:
 
-1. Meaningful `readme.md` file on both the client and server sides containing your website name, a link to your live site. Add at least five bullet points that mention your website's different features and functionality.
+1. Meaningful `readme.md` file on both the client and server sides containing your website name, a link to your live site. Add at least five bullet points that mention your website's different features and functionality.👍
 
-2. At least 15 meaningful GitHub commits for the client-side and at least 10 meaningful commits for the server-side repository.
+2. At least 15 meaningful GitHub commits for the client-side and at least 10 meaningful commits for the server-side repository.👍
 
-3. Make the website responsive. Make sure the site looks different on desktop and mobile responsive. Tablet responsive is optional.
+3. Make the website responsive. Make sure the site looks different on desktop and mobile responsive. Tablet responsive is optional.👍
 
-4. Make the website meaningful and consistent in look and feel. Give your website a relevant name. Images and all the content of the website have to be appropriate. No `lorem ipsum` please.
+4. Make the website meaningful and consistent in look and feel. Give your website a relevant name. Images and all the content of the website have to be appropriate. No `lorem ipsum` please.👍
 
-5. Clean and organized Code. Organize components and add comments when needed. use `.env` file on the server, `.env.local` file on the client to hide db user and password, etc. Also use the `.gitignore` file
+5. Clean and organized Code. Organize components and add comments when needed. use `.env` file on the server, `.env.local` file on the client to hide db user and password, etc. Also use the `.gitignore` file👍
 
 6. On the `Manage All Orders` page for the admin, the logged-in admin will see the orders placed by every user. If multiple users use this website to place orders, everyone's order will be displayed here. The orders that are not paid will show `unpaid`. And the orders that are paid, an Admin can update the status of a paid order. After placing an order and completing the payment, every order will have a default status: `pending`. On the Manage All Orders page, an admin will be able to update the status of the pending to `shipped` status. This could be a simple button to update the pending status. (don't overthink, this is a simple button to update the status field of the order. Use Id to find the order and set the status to approved). Also, the admin will be able to cancel (cancel means admin can delete an order) that is not paid yet. Make sure to add a confirmation before deleting.
 
-7. Implement the basic version of the `jwt` token. Upon login, you will create a jwt token and store it on the client-side, and for the necessary pages, you will send the token with the call and verify the user. Implementing 401 and 403 is optional. Ensure you have implemented `jwt` token and create token and store it on the client-side for both email/password-based authentication and social login.
+7. Implement the basic version of the `jwt` token. Upon login, you will create a jwt token and store it on the client-side, and for the necessary pages, you will send the token with the call and verify the user. Implementing 401 and 403 is optional. Ensure you have implemented `jwt` token and create token and store it on the client-side for both email/password-based authentication and social login.👍
 
 8. Similarly, you will need to protect the admin route and on the server side verify the admin level api requests.
 
 9. on the `Manage Products` page, an admin can delete any products. Please make sure there is a confirmation. After deleting that product will not appear on the `home` page. Use a meaningful and good-looking confirmation modal. Avoid using browser default confirm.
 
-10. Use `react query` for at least one API call.
+10. Use `react query` for at least one API call.👍
 
-11. Use `react hook form` at least one form. For the rest of the forms, you can either use react hook form or basic html form or any other form you want.
+11. Use `react hook form` at least one form. For the rest of the forms, you can either use react hook form or basic html form or any other form you want.👍
 
 ### Optional but highly encouraged to do:
 
