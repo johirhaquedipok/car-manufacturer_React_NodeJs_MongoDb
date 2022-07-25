@@ -22,8 +22,8 @@ const PurchasePage = () => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.success === true) toast.success("success");
-        console.log(data);
+        if (data?.data?.result.acknowledged === true) toast.success("success");
+        reset();
       },
       onError: () => {
         toast.error("there was an error");
@@ -60,22 +60,16 @@ const PurchasePage = () => {
   // sing in with email and password
   const onSubmit = async (data) => {
     const productOrder = {
-      productDetails: [
-        {
-          productId: product?.data?._id,
-          orderedQty: data?.orderedQty,
-          partsName: product?.data?.partsName,
-          orderDate: date,
-          img: product?.data?.img,
-        },
-      ],
-
+      productId: product?.data?._id,
+      orderedQty: data?.orderedQty,
+      partsName: product?.data?.partsName,
+      orderDate: date,
+      img: product?.data?.img,
       userEmail: data.email,
       userPhone: data.phone,
       userAddress: data.address,
     };
     mutate(productOrder);
-    reset();
   };
 
   //   add  qty

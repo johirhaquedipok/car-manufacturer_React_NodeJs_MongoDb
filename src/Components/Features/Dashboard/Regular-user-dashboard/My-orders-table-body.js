@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyOrdersTableBody = ({ product, idx }) => {
+const MyOrdersTableBody = ({ product, idx, setModal }) => {
   return (
     <tr>
       <th>{idx + 1}</th>
@@ -20,7 +20,13 @@ const MyOrdersTableBody = ({ product, idx }) => {
       <td>{product?.orderDate}</td>
 
       <th>
-        <button className="btn btn-ghost btn-xs">Cancel</button>
+        <label
+          htmlFor="my-modal-7"
+          className="btn btn-ghost btn-xs"
+          onClick={() => setModal(product._id)}
+        >
+          Cancel
+        </label>
       </th>
     </tr>
   );

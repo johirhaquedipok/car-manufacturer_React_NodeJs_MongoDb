@@ -18,12 +18,15 @@ const MyOrders = () => {
   if (isLoading) {
     return <Loading />;
   }
+  const handleCancelOrder = (id) => {
+    console.log(id);
+  };
 
   return (
     <div>
       <p className="text-center text-4xl">My orders</p>
-      <MyOrdersTable products={products.data} />
-      <CancelOrderModal />
+      <MyOrdersTable products={products?.data} setModal={setModal} />
+      <CancelOrderModal modal={modal} handleCancelOrder={handleCancelOrder} />
     </div>
   );
 };

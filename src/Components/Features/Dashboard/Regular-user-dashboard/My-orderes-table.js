@@ -1,7 +1,8 @@
 import React from "react";
 import MyOrdersTableBody from "./My-orders-table-body";
 
-const MyOrdersTable = ({ products }) => {
+const MyOrdersTable = ({ products, setModal }) => {
+  console.log(products);
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -17,11 +18,12 @@ const MyOrdersTable = ({ products }) => {
         </thead>
         <tbody>
           {/* <!-- row  --> */}
-          {products?.productDetails?.map((product, idx) => (
+          {products?.map((product, idx) => (
             <MyOrdersTableBody
-              key={product.productId + idx}
+              key={product._id}
               product={product}
               idx={idx}
+              setModal={setModal}
             />
           ))}
         </tbody>
