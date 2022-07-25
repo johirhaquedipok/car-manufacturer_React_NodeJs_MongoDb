@@ -36,7 +36,6 @@ const UsersProfile = ({ product }) => {
   );
 
   // image storage key
-  const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
 
   // form
   const {
@@ -59,15 +58,16 @@ const UsersProfile = ({ product }) => {
     formData.append("image", image);
 
     // post image to the db
+    const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
     const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
-    const { data: result } = await axios.post(url, formData);
+    const { data: img } = await axios.post(url, formData);
 
     const profileData = {
       userEmail: data.email,
       userPhone: data.phone,
       userAddress: data.address,
       userName: data.name,
-      userPhoto: result?.data?.url,
+      userPhoto: img?.data?.url,
     };
     mutate(profileData);
   };

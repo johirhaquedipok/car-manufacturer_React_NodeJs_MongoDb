@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -13,7 +14,7 @@ const AddAProduct = () => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.success === true) toast.success("success");
+        if (data?.data?.acknowledged === true) toast.success("success");
         console.log(data);
       },
       onError: () => {
@@ -39,17 +40,27 @@ const AddAProduct = () => {
 
   // sing in with email and password
   const onSubmit = async (data) => {
-    const productOrder = {
+    const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
+    //  image to the image db
+    const image = data.img[0];
+    console.log(data);
+    const formData = new FormData();
+    formData.append("image", image);
+
+    // post image to the db
+    const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
+    const { data: img } = await axios.post(url, formData);
+
+    const product = {
       availableQty: data.availableQty,
       minimumOrderQty: data.minimumOrderQty,
       pricePerUnit: data.pricePerUnit,
-      img: data.img,
+      img: img?.data?.url,
       partsName: data.partsName,
       company: data.company,
       description: data.description,
     };
-    // mutate(productOrder);
-    console.log(productOrder);
+    mutate(product);
   };
 
   return (
