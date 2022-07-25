@@ -78,7 +78,7 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 7. Implement the basic version of the `jwt` token. Upon login, you will create a jwt token and store it on the client-side, and for the necessary pages, you will send the token with the call and verify the user. Implementing 401 and 403 is optional. Ensure you have implemented `jwt` token and create token and store it on the client-side for both email/password-based authentication and social login.👍
 
-8. Similarly, you will need to protect the admin route and on the server side verify the admin level api requests.
+8. Similarly, you will need to protect the admin route and on the server side verify the admin level api requests.👍
 
 9. on the `Manage Products` page, an admin can delete any products. Please make sure there is a confirmation. After deleting that product will not appear on the `home` page. Use a meaningful and good-looking confirmation modal. Avoid using browser default confirm.
 
