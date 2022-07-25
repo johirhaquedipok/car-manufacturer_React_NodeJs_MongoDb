@@ -1,5 +1,5 @@
 import React from "react";
-import AllOrderesTableBody from "./All-orders-table-body-others";
+import AllOrderesTableBody from "./All-orders-table-body";
 
 const AllOrderedTable = ({ products }) => {
   return (
