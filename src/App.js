@@ -16,6 +16,7 @@ import SignUp from "./Components/Features/Users/SignUp";
 import Blog from "./Components/Pages/Blog/Blog";
 import HomePage from "./Components/Pages/HomePage/HomePage";
 import NotFound from "./Components/Pages/NotFound/NotFound";
+import PaymentPage from "./Components/Pages/PaymentPage/PaymentPage";
 import Portfolio from "./Components/Pages/Portfolio/Portfolio";
 import PurchasePage from "./Components/Pages/PurchasePage/PurchasePage";
 import Footer from "./Components/Pages/shared/Footer";
@@ -77,6 +78,14 @@ function App() {
                 <RequireAdmin>
                   <ManageProducts />
                 </RequireAdmin>
+              }
+            />
+            <Route
+              path="payment/:id"
+              element={
+                <RequireAuth>
+                  <PaymentPage />
+                </RequireAuth>
               }
             />
           </Route>

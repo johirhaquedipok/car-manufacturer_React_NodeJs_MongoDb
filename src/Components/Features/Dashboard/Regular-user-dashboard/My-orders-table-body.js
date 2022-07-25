@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MyOrdersTableBody = ({ product, idx, setModal }) => {
+  const price = true;
   return (
     <tr>
       <th>{idx + 1}</th>
@@ -20,13 +22,26 @@ const MyOrdersTableBody = ({ product, idx, setModal }) => {
       <td>{product?.orderDate}</td>
 
       <th>
-        <label
-          htmlFor="my-modal-7"
-          className="btn btn-ghost btn-xs"
-          onClick={() => setModal(product._id)}
-        >
-          Cancel
-        </label>
+        {!price && (
+          <>
+            <label
+              htmlFor="my-modal-7"
+              className="btn btn-ghost btn-xs"
+              onClick={() => setModal(product._id)}
+            >
+              Cancel
+            </label>
+          </>
+        )}
+
+        {price && (
+          <Link
+            to={`/dashboard/payment/${product._id}`}
+            className="btn btn-xs btn-success"
+          >
+            Pay
+          </Link>
+        )}
       </th>
     </tr>
   );
