@@ -1,11 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { authClient, client } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
+import ConfirmModalDelete from "../../Ui/ConfirmModalDelete";
 import ManageProductsTable from "./Manage-products-table";
 
 const ManageProducts = () => {
+  const [modal, setModal] = useState("");
   // get data from parms id
   const {
     data: products,
@@ -22,7 +24,9 @@ const ManageProducts = () => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.acknowledged === true) console.log(data);
+        if (data?.data?.acknowledged === true)
+          toast.success("Product Delete Success");
+        console.log(data);
       },
       onError: () => {
         toast.error("there was an error");
@@ -40,9 +44,10 @@ const ManageProducts = () => {
 
   return (
     <div>
-      <ManageProductsTable
-        products={products?.data}
+      <ManageProductsTable products={products?.data} setModal={setModal} />
+      <ConfirmModalDelete
         handleDeleteProduct={handleDeleteProduct}
+        modal={modal}
       />
     </div>
   );

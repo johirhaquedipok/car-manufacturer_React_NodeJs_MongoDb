@@ -1,7 +1,7 @@
 import React from "react";
 import ManageProductsTableBody from "./Manage-Products-table-body";
 
-const ManageProductsTable = ({ products, handleDeleteProduct }) => {
+const ManageProductsTable = ({ products, setModal }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -21,7 +21,7 @@ const ManageProductsTable = ({ products, handleDeleteProduct }) => {
               key={product._id}
               product={product}
               idx={idx}
-              handleDeleteProduct={handleDeleteProduct}
+              setModal={setModal}
             />
           ))}
         </tbody>
