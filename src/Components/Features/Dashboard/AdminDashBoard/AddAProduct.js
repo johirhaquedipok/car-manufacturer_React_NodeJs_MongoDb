@@ -15,7 +15,6 @@ const AddAProduct = () => {
     {
       onSuccess: (data) => {
         if (data?.data?.acknowledged === true) toast.success("success");
-        console.log(data);
       },
       onError: () => {
         toast.error("there was an error");
@@ -26,8 +25,6 @@ const AddAProduct = () => {
   // form
   const {
     register,
-    watch,
-    setValue,
     formState: { errors },
     handleSubmit,
     reset,
@@ -43,7 +40,6 @@ const AddAProduct = () => {
     const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
     //  image to the image db
     const image = data.img[0];
-    console.log(data);
     const formData = new FormData();
     formData.append("image", image);
 
@@ -61,6 +57,7 @@ const AddAProduct = () => {
       description: data.description,
     };
     mutate(product);
+    reset();
   };
 
   return (
