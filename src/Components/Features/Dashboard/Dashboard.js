@@ -20,6 +20,7 @@ const Dashboard = () => {
           >
             Open drawer
           </label>
+
           <Outlet />
         </div>
         <div className="drawer-side">
