@@ -33,7 +33,7 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/usersprofile">User Profile</Link>
             </li>
-            {admin && (
+            {!admin && (
               <>
                 <li>
                   <Link to="/dashboard/addareview">Add A review</Link>

@@ -1,18 +1,17 @@
 import React from "react";
-import AllOrderedProductsDetails from "./All-orderes-table-body-details";
 
-const AllOrderesTableBody = ({ product }) => {
+const AllOrderesTableBody = ({ product, idx }) => {
   return (
-    <>
-      {product?.productDetails?.map((item, indx) => (
-        <AllOrderedProductsDetails
-          email={product.userEmail}
-          key={indx}
-          item={item}
-          indx={indx}
-        />
-      ))}
-    </>
+    <tr>
+      <th>{idx + 1}</th>
+      <td>{product.userEmail}</td>
+      <td>{product?.partsName}</td>
+      <td>{product?.orderedQty}</td>
+      <td>{product?.orderDate}</td>
+      <th>
+        <button className="btn btn-ghost btn-xs">Cancel</button>
+      </th>
+    </tr>
   );
 };
 

@@ -2,7 +2,6 @@ import React from "react";
 import MyOrdersTableBody from "./My-orders-table-body";
 
 const MyOrdersTable = ({ products, setModal }) => {
-  console.log(products);
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
