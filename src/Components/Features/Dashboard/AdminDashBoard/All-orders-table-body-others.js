@@ -1,17 +1,15 @@
 import React from "react";
+import AllOrderedProductsDetails from "./All-orderes-table-details";
 
 const AllOrderesTableBody = ({ product, idx }) => {
+  console.log(product?.productDetails);
   return (
     <>
-      <tr>
+      {/* <tr>
         <th>{idx + 1}</th>
         <td>
           <div className="flex items-center space-x-3">
-            {/* <div className="avatar">
-            <div className="mask mask-squircle w-12 h-12">
-              <img src={product?.img} alt={product?.partsName} />
-            </div>
-          </div> */}
+           
             <div>
               <div className="font-bold">{product?.userEmail}</div>
             </div>
@@ -22,15 +20,19 @@ const AllOrderesTableBody = ({ product, idx }) => {
         </td>
         <td>{product?.orderedQty}</td>
         <td>{product?.orderDate}</td>
-        <td>
-          {/* {product.productDetails.map((item, indx) => (
-            <AllOrderedProductsDetails key={indx} item={item} />
-          ))} */}
-        </td>
+        <td></td>
         <th>
           <button className="btn btn-ghost btn-xs">Cancel</button>
         </th>
-      </tr>
+      </tr> */}
+      {product?.productDetails.map((item, indx) => (
+        <AllOrderedProductsDetails
+          email={product.userEmail}
+          key={indx}
+          item={item}
+          indx={indx}
+        />
+      ))}
     </>
   );
 };

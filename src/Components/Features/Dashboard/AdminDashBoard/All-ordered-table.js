@@ -21,7 +21,6 @@ const AllOrderedTable = ({ products }) => {
           {products?.map((product, idx) => (
             <AllOrderesTableBody
               key={product._id}
-              emial={product.userEmail}
               product={product}
               idx={idx}
             />
