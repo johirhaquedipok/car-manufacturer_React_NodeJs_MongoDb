@@ -24,9 +24,8 @@ const ManageProducts = () => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.acknowledged === true)
-          toast.success("Product Delete Success");
-        console.log(data);
+        if (data?.data?.acknowledged === true) refetch();
+        toast.success("Product Delete Success");
       },
       onError: () => {
         toast.error("there was an error");
@@ -35,7 +34,6 @@ const ManageProducts = () => {
   );
   const handleDeleteProduct = (id) => {
     mutate(id);
-    refetch();
   };
 
   if (isLoading || isLoading1) {
