@@ -24,13 +24,10 @@ const UsersProfile = ({ product }) => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.success === true) toast.success("success");
-        toast.success("profile updated");
-        console.log(data);
+        if (data?.data?.acknowledged === true) toast.success("profile updated");
       },
-      onError: (data) => {
+      onError: () => {
         toast("there was an error user profile");
-        console.log(data);
       },
     }
   );
@@ -70,6 +67,7 @@ const UsersProfile = ({ product }) => {
       userPhoto: img?.data?.url,
     };
     mutate(profileData);
+    reset();
   };
 
   return (
