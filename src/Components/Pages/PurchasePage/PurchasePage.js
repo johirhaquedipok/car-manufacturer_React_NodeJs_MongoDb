@@ -26,7 +26,7 @@ const PurchasePage = () => {
         console.log(data);
       },
       onError: () => {
-        alert("there was an error");
+        toast.error("there was an error");
       },
     }
   );
@@ -63,7 +63,7 @@ const PurchasePage = () => {
       productDetails: [
         {
           productId: product?.data?._id,
-          orderedQty: data.orderedQty,
+          orderedQty: data?.orderedQty,
           partsName: product?.data?.partsName,
           orderDate: date,
           img: product?.data?.img,
@@ -75,6 +75,7 @@ const PurchasePage = () => {
       userAddress: data.address,
     };
     mutate(productOrder);
+    reset();
   };
 
   //   add  qty

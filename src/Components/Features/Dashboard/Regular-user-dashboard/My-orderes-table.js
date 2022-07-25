@@ -17,7 +17,7 @@ const MyOrdersTable = ({ products }) => {
         </thead>
         <tbody>
           {/* <!-- row  --> */}
-          {products?.productDetails.map((product, idx) => (
+          {products?.productDetails?.map((product, idx) => (
             <MyOrdersTableBody
               key={product.productId + idx}
               product={product}

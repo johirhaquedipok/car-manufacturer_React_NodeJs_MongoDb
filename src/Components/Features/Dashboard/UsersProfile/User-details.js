@@ -4,10 +4,10 @@ const UserDetaisl = ({ userProfile }) => {
   return (
     <div className="card bg-base-300 rounded-box mx-2 grid flex-shrink-0 gap-4 p-4 py-8 shadow-xl xl:mx-0 w-full ">
       <div className="card-body">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col md:flex-row lg:flex-row">
           {/* name image and email */}
-          <div className="grid flex-grow  space-x-2">
-            <div className="flex items-center">
+          <div className="grid flex-grow space-x-2">
+            <div className="flex flex-col md:flex-row justify-center md:justify-normal  items-center">
               <div className="avatar pr-1">
                 <div className="mask mask-squircle bg-base-content h-24 w-24 bg-opacity-10 p-px">
                   <img
@@ -30,7 +30,7 @@ const UserDetaisl = ({ userProfile }) => {
             </div>
           </div>
           {/* other details */}
-          <div className="grid flex-grow flex items-center space-x-2">
+          <div className="flex-grow flex flex-col md:flex-row  items-center space-x-2">
             <div>
               <div className="text-md font-bold">Other Details</div>
               <div className="text-base-content/70 ">

@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <>
+    <div className="max-w-screen-2xl my-0 mx-auto">
       {/* footer 1st part */}
 
       <footer className="footer grid-rows-2 p-10 bg-neutral text-neutral-content">
@@ -153,7 +153,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 

@@ -12,12 +12,29 @@ const Navbar = () => {
   const signout = () => {
     signOut(auth);
   };
+
+  const menuNav = (
+    <ul
+      tabIndex="0"
+      className="menu menu-compact dropdown-content md:flex mt-3 p2 shadow bg-base-100 rounded-box w-52 md:menu-horizontal md:p-0"
+    >
+      <li>
+        <CustomLink to="/home">Home</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/portfolio">Portfolio</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/blog">Blog</CustomLink>
+      </li>
+    </ul>
+  );
   return (
-    <div>
+    <div className="max-w-screen-2xl my-0 mx-auto">
       <div className="navbar bg-base-300">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex="0" className="btn btn-ghost lg:hidden">
+            <label tabIndex="0" className="btn btn-ghost md:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -33,31 +50,7 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-            <ul
-              tabIndex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li tabIndex="0">
-                <a className="justify-between">
-                  Parent
-                  <svg
-                    className="fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
+            {menuNav}
           </div>
           <Link className="btn btn-ghost normal-case text-xl" to={"/"}>
             SoniKon
@@ -94,7 +87,6 @@ const Navbar = () => {
                           <img src={user?.photoURL} alt={user?.displayName} />
                         </div>
                       </div>
-
                       <div
                         tabIndex="0"
                         className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52"

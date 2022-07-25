@@ -24,72 +24,73 @@ function App() {
   return (
     <>
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="home" element={<HomePage />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="portfolio" element={<Portfolio />} />
-        <Route
-          path="purchase/:id"
-          element={
-            <RequireAuth>
-              <PurchasePage />
-            </RequireAuth>
-          }
-        />
-
-        {/* auth based routes for all users */}
-        <Route
-          path="dashboard"
-          element={
-            <RequireAuth>
-              <Dashboard />
-            </RequireAuth>
-          }
-        >
-          <Route path="usersprofile" element={<UsersProfile />} />
-
-          {/* auth based routes for regular users */}
-          <Route path="addareview" element={<AddAReview />} />
-          <Route path="myorders" element={<MyOrders />} />
-
-          {/* auth based routes for Admin */}
+      <div className="max-w-screen-xl my-0 mx-auto">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="portfolio" element={<Portfolio />} />
           <Route
-            path="addaproduct"
+            path="purchase/:id"
             element={
-              <RequireAdmin>
-                <AddAProduct />
-              </RequireAdmin>
+              <RequireAuth>
+                <PurchasePage />
+              </RequireAuth>
             }
           />
-          <Route
-            path="mangeallorders"
-            element={
-              <RequireAdmin>
-                <ManageAllOrders />
-              </RequireAdmin>
-            }
-          />
-          <Route
-            path="mangeproducts"
-            element={
-              <RequireAdmin>
-                <ManageProducts />
-              </RequireAdmin>
-            }
-          />
-        </Route>
 
-        {/* signin / sing up */}
-        <Route path="signin" element={<SignIn />} />
-        <Route path="singup" element={<SignUp />} />
+          {/* auth based routes for all users */}
+          <Route
+            path="dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          >
+            <Route path="usersprofile" element={<UsersProfile />} />
 
-        <Route path="resetpwd" element={<ResetPassword />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+            {/* auth based routes for regular users */}
+            <Route path="addareview" element={<AddAReview />} />
+            <Route path="myorders" element={<MyOrders />} />
+
+            {/* auth based routes for Admin */}
+            <Route
+              path="addaproduct"
+              element={
+                <RequireAdmin>
+                  <AddAProduct />
+                </RequireAdmin>
+              }
+            />
+            <Route
+              path="mangeallorders"
+              element={
+                <RequireAdmin>
+                  <ManageAllOrders />
+                </RequireAdmin>
+              }
+            />
+            <Route
+              path="mangeproducts"
+              element={
+                <RequireAdmin>
+                  <ManageProducts />
+                </RequireAdmin>
+              }
+            />
+          </Route>
+
+          {/* signin / sing up */}
+          <Route path="signin" element={<SignIn />} />
+          <Route path="singup" element={<SignUp />} />
+
+          <Route path="resetpwd" element={<ResetPassword />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ToastContainer />
+      </div>
       <Footer />
-      <ToastContainer />
     </>
   );
 }

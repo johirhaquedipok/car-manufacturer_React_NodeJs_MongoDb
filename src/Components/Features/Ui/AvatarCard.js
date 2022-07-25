@@ -2,7 +2,7 @@ import React from "react";
 
 const AvatarCard = ({ user, signout }) => {
   return (
-    <div className="card bg-base-100 rounded-box   mx-2 grid w-72 flex-shrink-0 place-items-center items-center gap-4 p-4 py-8 shadow-xl xl:mx-0 xl:w-full glass">
+    <div className="card bg-base-100 rounded-box mx-2 grid w-72 flex-shrink-0 place-items-center items-center gap-4 p-4 py-8 shadow-xl xl:mx-0 xl:w-full glass">
       <div className=" avatar">
         <div className="w-24 mask mask-squircle bg-base-contetnmask mask-squircle bg-base-content h-24 w-24 bg-opacity-10 p-px">
           <img src={user?.photoURL} alt={user?.displayName} />
