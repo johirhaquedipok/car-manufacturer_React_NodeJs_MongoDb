@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import auth from "../../../firebase.init";
 import useAdmin from "../../../hooks/useAdmin";
+import CustomLink from "../../Pages/shared/CustomLink/CustomLink";
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
@@ -36,23 +37,31 @@ const Dashboard = () => {
             {!admin && (
               <>
                 <li>
-                  <Link to="/dashboard/addareview">Add A review</Link>
+                  <CustomLink to="/dashboard/addareview">
+                    Add A review
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myorders">My Orders</Link>
+                  <CustomLink to="/dashboard/myorders">My Orders</CustomLink>
                 </li>
               </>
             )}
             {admin && (
               <>
                 <li>
-                  <Link to="/dashboard/addaproduct">AddAProduct</Link>
+                  <CustomLink to="/dashboard/addaproduct">
+                    Add A Product
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/mangeallorders">ManageAllOrders</Link>
+                  <CustomLink to="/dashboard/mangeallorders">
+                    Manage All Orders
+                  </CustomLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/mangeproducts">ManageProducts</Link>
+                  <CustomLink to="/dashboard/mangeproducts">
+                    Manage Products
+                  </CustomLink>
                 </li>
               </>
             )}
