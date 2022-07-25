@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
-import CancelOrderModal from "../../Ui/CancelOrderModal";
+import ConfirmModalDelete from "../../Ui/ConfirmModalDelete";
 import MyOrdersTable from "./My-orderes-table";
 
 const MyOrders = () => {
@@ -18,7 +18,7 @@ const MyOrders = () => {
   if (isLoading) {
     return <Loading />;
   }
-  const handleCancelOrder = (id) => {
+  const handleDeleteProduct = (id) => {
     console.log(id);
   };
 
@@ -26,7 +26,10 @@ const MyOrders = () => {
     <div>
       <p className="text-center text-4xl">My orders</p>
       <MyOrdersTable products={products?.data} setModal={setModal} />
-      <CancelOrderModal modal={modal} handleCancelOrder={handleCancelOrder} />
+      <ConfirmModalDelete
+        modal={modal}
+        handleDeleteProduct={handleDeleteProduct}
+      />
     </div>
   );
 };

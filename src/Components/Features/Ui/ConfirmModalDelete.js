@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConfirmModal = ({ modal, handleDeleteProduct }) => {
+const ConfirmModalDelete = ({ modal, handleDeleteProduct }) => {
   return (
     <div className="">
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
@@ -13,11 +13,9 @@ const ConfirmModal = ({ modal, handleDeleteProduct }) => {
             ✕
           </label>
           <h3 className="font-bold text-lg">Confirmation</h3>
-          <p className="py-4">
-            Your all details are ok? Or you can recheck also!
-          </p>
+          <p className="py-4">You can recheck also!</p>
           <div className="modal-action">
-            <label htmlFor="my-modal-6" className="btn">
+            <label htmlFor="my-modal-6" className="btn btn-primary">
               No
             </label>
             <label
@@ -35,4 +33,4 @@ const ConfirmModal = ({ modal, handleDeleteProduct }) => {
   );
 };
 
-export default ConfirmModal;
+export default ConfirmModalDelete;
