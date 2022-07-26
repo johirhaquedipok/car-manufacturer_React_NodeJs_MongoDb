@@ -11,7 +11,7 @@ const Hero = () => {
             alt=""
           />
         </div>
-        <div className="hero-content flex-col md:gap-10 mt-7 lg:gap-18">
+        <div className="flex-col md:gap-10 mt-7 lg:gap-18">
           <h1 className="text-5xl font-bold">Latest Product!</h1>
           <p className="py-6">
             The more advanced technology and far more better experience. Embrace
