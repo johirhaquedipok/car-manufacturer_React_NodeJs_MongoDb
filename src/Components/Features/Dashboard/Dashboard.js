@@ -34,7 +34,7 @@ const Dashboard = () => {
             <li>
               <Link to="/dashboard/usersprofile">User Profile</Link>
             </li>
-            {admin && (
+            {!admin && (
               <>
                 <li>
                   <CustomLink to="/dashboard/addareview">
@@ -62,6 +62,9 @@ const Dashboard = () => {
                   <CustomLink to="/dashboard/mangeproducts">
                     Manage Products
                   </CustomLink>
+                </li>
+                <li>
+                  <CustomLink to="/dashboard/allusers">All Users</CustomLink>
                 </li>
               </>
             )}

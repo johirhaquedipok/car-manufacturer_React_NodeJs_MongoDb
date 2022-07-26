@@ -22,13 +22,13 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 4. The `purchase' page will be a private/protected route. Please make sure that the private route redirects to the login page if the user is not logged in. After login, the user will be redirected to the page he/she wanted to go to. Also, after reloading the page of a private/protected route, the user is not redirected to the login page. The purchase page should display detailed information about the item the user has clicked somewhere at the top. It will also display the user's name and email address from the login system. The user will have a field to provide an address, phone number, and other necessary information (if applicable) to place the order or complete the purchase.👍
 
-   Please do not block the user if the email is not verified for our assignment evaluation purpose. Because it will stop the assignment evaluation if the email sending is not working, if you want, you can enforce this after receiving assignment marks.
+   Please do not block the user if the email is not verified for our assignment evaluation purpose. Because it will stop the assignment evaluation if the email sending is not working, if you want, you can enforce this after receiving assignment marks.👍
 
 5. On the Purchase page, users will be able to change the order quantity (increase/decrease) in an input field. The initial value of the quantity will be the minimum order quantity. However, the user won't be able to reduce the quantity below the minimum order quantity mentioned on the tool/part. Also, the order quantity can not be higher than the available quantity. You will display an error and disable the purchase button in both cases.👍
 
 6. Implement an email/ password (login/Register) based login system. The registration form should have the name, and once a user is logged in, the user name and the logout button should appear on the header, which will log out the user once clicked. Implement at least one social login system (google, facebook, or github, etc.). Make sure to display login-related errors and password validation-related errors.👍
 
-7. If a user is logged in, they will see another option on the header is called `Dashboard`. Inside the dashboard, a user (not an admin) will see options like `My Orders`, `Add A Review`, `My Profile` options on the side nav. This is the time to implement a nested route. Based on your website idea, you can change the name of these menu items. The My Profile link will be open for everyone. This means every user will be able to see my profile link and update their profile.
+7. If a user is logged in, they will see another option on the header is called `Dashboard`. Inside the dashboard, a user (not an admin) will see options like `My Orders`, `Add A Review`, `My Profile` options on the side nav. This is the time to implement a nested route. Based on your website idea, you can change the name of these menu items. The My Profile link will be open for everyone. This means every user will be able to see my profile link and update their profile.👍
 
 8. On `My Orders` page, the logged-in user will see only their orders. If the user wants, they should be able to cancel (canceling is just deleting the order) any order that is not paid yet. Ask for a confirmation message before canceling an order. Do not use browser default confirm. Instead, use a good-looking modal. Please note users will not see the cancel option for any paid order.
 
@@ -40,7 +40,7 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 12. If an admin logs in, they will not see the options that a user sees except `My Profile`. This means an admin will not see my orders and add a review link. Instead, an admin will see `My Profile`, `Manage All Orders`, `Add A Product`, `Make Admin`, `Manage Products`. Based on your website idea, you can change the name of these menu names. Manage products will be described in the bonus section.
 
-13. An Admin should be able to make another user an admin. If an admin wants, they will be able to add a product on the add a product page. After adding the product, this product will appear on the `home` page. Please note, to add an image for a new product; you can just upload the image directly to the image hosting sites like imgbb, etc using API. Alternatively, you can have an input field to add the link to the image.
+13. An Admin should be able to make another user an admin. If an admin wants, they will be able to add a product on the add a product page. After adding the product, this product will appear on the `home` page. Please note, to add an image for a new product; you can just upload the image directly to the image hosting sites like imgbb, etc using API. Alternatively, you can have an input field to add the link to the image.👍
 
 14. One route will be `Blogs`. This will be a open route (anyone visiting your website will see it). Please answer at least five questions on the blogs page. We recommend answering all six questions.
 
@@ -58,9 +58,9 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 15. Create `My Portfolio` route. In this route, you will have your name, email address, educational background, list of technologies or skills you have as a web developer. Add links of three of your projects (live website links). Adding descriptions or screenshots of your projects are optional.
 
-16. Create a meaningful 404 page (not found page). Add a meaningful image on the 404 page.
+16. Create a meaningful 404 page (not found page). Add a meaningful image on the 404 page.👍
 
-17. Use a database to store information. It could be mongodb atlas or any other database.
+17. Use a database to store information. It could be mongodb atlas or any other database.👍
 
 ### Bonus:
 

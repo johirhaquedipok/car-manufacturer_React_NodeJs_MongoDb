@@ -10,14 +10,14 @@ const stripePromise = loadStripe(
 );
 
 const PaymentPage = () => {
-  const params = useParams();
-  const { data: product, isLoading } = useQuery(["payment"], async () => {
-    return await authClient.get(`/ordered-products-payment/${params.id}`);
+  const { id } = useParams();
+  const { data: product, isLoading } = useQuery(["payment", id], async () => {
+    return await authClient.get(`/ordered-products-payment/${id}`);
   });
   return (
     <div>
       <Elements stripe={stripePromise}>
-        <CheckOutFrom product={product} />
+        <CheckOutFrom product={product?.data} />
       </Elements>
     </div>
   );

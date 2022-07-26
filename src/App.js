@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddAProduct from "./Components/Features/Dashboard/AdminDashBoard/AddAProduct";
+import AllUsers from "./Components/Features/Dashboard/AdminDashBoard/All-users";
 import ManageAllOrders from "./Components/Features/Dashboard/AdminDashBoard/ManageAllOrders";
 import ManageProducts from "./Components/Features/Dashboard/AdminDashBoard/ManageProducts";
 import Dashboard from "./Components/Features/Dashboard/Dashboard";
@@ -56,6 +57,14 @@ function App() {
             <Route path="myorders" element={<MyOrders />} />
 
             {/* auth based routes for Admin */}
+            <Route
+              path="allusers"
+              element={
+                <RequireAdmin>
+                  <AllUsers />
+                </RequireAdmin>
+              }
+            />
             <Route
               path="addaproduct"
               element={

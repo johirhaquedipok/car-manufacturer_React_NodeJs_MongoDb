@@ -22,7 +22,7 @@ const MyOrdersTableBody = ({ product, idx, setModal }) => {
       <td>{product?.orderDate}</td>
 
       <th>
-        {!price && (
+        {/* {!price && (
           <>
             <label
               htmlFor="my-modal-7"
@@ -32,16 +32,15 @@ const MyOrdersTableBody = ({ product, idx, setModal }) => {
               Cancel
             </label>
           </>
-        )}
-
-        {price && (
-          <Link
-            to={`/dashboard/payment/${product._id}`}
-            className="btn btn-xs btn-success"
-          >
-            Pay
-          </Link>
-        )}
+        )} */}
+        (
+        <Link
+          to={`/dashboard/payment/${product._id}`}
+          className="btn btn-xs btn-success"
+        >
+          Pay
+        </Link>
+        )
       </th>
     </tr>
   );
