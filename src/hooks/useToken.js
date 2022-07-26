@@ -8,7 +8,7 @@ const useToken = (user) => {
     if (email) {
       // get user token
       const jotToken = async (email) => {
-        const { data } = await client.put(`/signin/:${email}`, { email });
+        const { data } = await client.put(`/signin/${email}`, { email });
         localStorage.setItem("accessToken", data.accessToken);
         return setToken(data.accessToken);
       };
