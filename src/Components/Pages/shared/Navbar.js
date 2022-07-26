@@ -16,7 +16,7 @@ const Navbar = () => {
   const menuNav = (
     <ul
       tabIndex="0"
-      className="menu menu-compact dropdown-content md:flex mt-3 p2 shadow bg-base-100 rounded-box w-52 md:menu-horizontal md:p-0"
+      className="menu menu-compact dropdown-content md:flex mt-3 p2 shadow bg-base-100 rounded-box w-52  md:menu-horizontal md:p-0"
     >
       <li>
         <CustomLink to="/home">Home</CustomLink>
@@ -89,7 +89,7 @@ const Navbar = () => {
                       </div>
                       <div
                         tabIndex="0"
-                        className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52"
+                        className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52 lg:w-72"
                       >
                         <AvatarCard user={user} signout={signout} />
                       </div>
