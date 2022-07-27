@@ -13,18 +13,26 @@ const UsersProfile = ({ product }) => {
   const [user] = useAuthState(auth);
 
   // load user data from db
-  const { data: userProfile } = useQuery(["userprofile"], async () => {
+  const {
+    data: userProfile,
+    isLoading,
+    refetch,
+  } = useQuery(["userprofile"], async () => {
     return await authClient.get(`/users-profile/${user?.email}`);
   });
 
   // post data to the server
-  const { mutate, isLoading } = useMutation(
+  const { mutate, isLoading: profileupdateLoading } = useMutation(
     async (value) => {
-      return await authClient.put(`/users-profile/${user?.email}`, value);
+      return await authClient.put(
+        `/users-profile/${userProfile?.data?._id}`,
+        value
+      );
     },
     {
       onSuccess: (data) => {
         if (data?.data?.acknowledged === true) toast.success("profile updated");
+        refetch();
       },
       onError: () => {
         toast("there was an error user profile");
@@ -43,7 +51,7 @@ const UsersProfile = ({ product }) => {
   } = useForm();
 
   // loading
-  if (isLoading) {
+  if (isLoading || profileupdateLoading) {
     return <Loading />;
   }
 
