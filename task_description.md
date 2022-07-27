@@ -18,7 +18,7 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 2. Add two different sections on the home page and the 6 sections mentioned above. Tips: This is the place to shine. Add something different and unique to make your website looks different than others. And Make them relevant to your website. And make these two sections meaningful.
 
-3. The business summary will show some summary of your business. There could be 3/4 summary on this summary section. For example, we served 100+ customers, 120M+ Annual revenue, 33K+ Reviews, 50+ tools, etc. Make sure you use some relevant icons here. You can use Hero Icons, React Icons, Font Awesome, Bootstrap Icons, Daisy UI or any icons that you like. To see an example, you will find an image in the images folder of this repository.
+3. The business summary will show some summary of your business. There could be 3/4 summary on this summary section. For example, we served 100+ customers, 120M+ Annual revenue, 33K+ Reviews, 50+ tools, etc. Make sure you use some relevant icons here. You can use Hero Icons, React Icons, Font Awesome, Bootstrap Icons, Daisy UI or any icons that you like. To see an example, you will find an image in the images folder of this repository.👍
 
 4. The `purchase' page will be a private/protected route. Please make sure that the private route redirects to the login page if the user is not logged in. After login, the user will be redirected to the page he/she wanted to go to. Also, after reloading the page of a private/protected route, the user is not redirected to the login page. The purchase page should display detailed information about the item the user has clicked somewhere at the top. It will also display the user's name and email address from the login system. The user will have a field to provide an address, phone number, and other necessary information (if applicable) to place the order or complete the purchase.👍
 
@@ -36,7 +36,7 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 10. On the `Add A Review` page, users should be able to add a review. A review will contain ratings ( a number 1 to 5 and a description). That review will appear on the home page reviews section. Right now, you will see every review on the home page. There is no limit on the number of reviews or the order of the review.👍
 
-11. The `My profile` route will be available for every user (admin or non-admin. everyone will see this link). The user will see their name and email address on this profile in this link. Also, this page will have fields to add fields like education, location (city/district), phone number, LinkedIn profile link, etc. And users will be able to save this information in the database. Also, the user will be able to update this information.
+11. The `My profile` route will be available for every user (admin or non-admin. everyone will see this link). The user will see their name and email address on this profile in this link. Also, this page will have fields to add fields like education, location (city/district), phone number, LinkedIn profile link, etc. And users will be able to save this information in the database. Also, the user will be able to update this information.👍
 
 12. If an admin logs in, they will not see the options that a user sees except `My Profile`. This means an admin will not see my orders and add a review link. Instead, an admin will see `My Profile`, `Manage All Orders`, `Add A Product`, `Make Admin`, `Manage Products`. Based on your website idea, you can change the name of these menu names. Manage products will be described in the bonus section.👍
 
@@ -56,7 +56,7 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
     14.6 What is a unit test? Why should write unit tests?
 
-15. Create `My Portfolio` route. In this route, you will have your name, email address, educational background, list of technologies or skills you have as a web developer. Add links of three of your projects (live website links). Adding descriptions or screenshots of your projects are optional.
+15. Create `My Portfolio` route. In this route, you will have your name, email address, educational background, list of technologies or skills you have as a web developer. Add links of three of your projects (live website links). Adding descriptions or screenshots of your projects are optional.👍
 
 16. Create a meaningful 404 page (not found page). Add a meaningful image on the 404 page.👍
 
@@ -74,13 +74,13 @@ We are a manufacturer. We are looking for a front-end web developer to build a w
 
 5. Clean and organized Code. Organize components and add comments when needed. use `.env` file on the server, `.env.local` file on the client to hide db user and password, etc. Also use the `.gitignore` file👍
 
-6. On the `Manage All Orders` page for the admin, the logged-in admin will see the orders placed by every user. If multiple users use this website to place orders, everyone's order will be displayed here. The orders that are not paid will show `unpaid`. And the orders that are paid, an Admin can update the status of a paid order. After placing an order and completing the payment, every order will have a default status: `pending`. On the Manage All Orders page, an admin will be able to update the status of the pending to `shipped` status. This could be a simple button to update the pending status. (don't overthink, this is a simple button to update the status field of the order. Use Id to find the order and set the status to approved). Also, the admin will be able to cancel (cancel means admin can delete an order) that is not paid yet. Make sure to add a confirmation before deleting.
+6. On the `Manage All Orders` page for the admin, the logged-in admin will see the orders placed by every user. If multiple users use this website to place orders, everyone's order will be displayed here. The orders that are not paid will show `unpaid`. And the orders that are paid, an Admin can update the status of a paid order. After placing an order and completing the payment, every order will have a default status: `pending`. On the Manage All Orders page, an admin will be able to update the status of the pending to `shipped` status. This could be a simple button to update the pending status. (don't overthink, this is a simple button to update the status field of the order. Use Id to find the order and set the status to approved). Also, the admin will be able to cancel (cancel means admin can delete an order) that is not paid yet. Make sure to add a confirmation before deleting.👍
 
 7. Implement the basic version of the `jwt` token. Upon login, you will create a jwt token and store it on the client-side, and for the necessary pages, you will send the token with the call and verify the user. Implementing 401 and 403 is optional. Ensure you have implemented `jwt` token and create token and store it on the client-side for both email/password-based authentication and social login.👍
 
 8. Similarly, you will need to protect the admin route and on the server side verify the admin level api requests.👍
 
-9. on the `Manage Products` page, an admin can delete any products. Please make sure there is a confirmation. After deleting that product will not appear on the `home` page. Use a meaningful and good-looking confirmation modal. Avoid using browser default confirm.
+9. on the `Manage Products` page, an admin can delete any products. Please make sure there is a confirmation. After deleting that product will not appear on the `home` page. Use a meaningful and good-looking confirmation modal. Avoid using browser default confirm.👍
 
 10. Use `react query` for at least one API call.👍
 

@@ -68,7 +68,9 @@ const PurchasePage = () => {
       userEmail: data.email,
       userPhone: data.phone,
       userAddress: data.address,
+      price: parseInt(data?.orderedQty) * parseInt(product?.data?.pricePerUnit),
     };
+
     mutate(productOrder);
   };
 

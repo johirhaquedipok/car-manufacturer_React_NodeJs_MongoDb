@@ -10,6 +10,7 @@ const CheckOutFrom = ({ product }) => {
   const [cardError, setCardError] = useState("");
   const [cardSuccess, setCardSuccess] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
     const orderedQty = product?.orderedQty;
@@ -60,7 +61,19 @@ const CheckOutFrom = ({ product }) => {
     } else {
       setCardError("");
       setCardSuccess("Payment Completed");
+      setTransactionId(paymentIntent.id);
     }
+    // update to the product server
+    const payment = {
+      transactionId: paymentIntent.id,
+      product: product?._id,
+    };
+    // database atch
+    authClient
+      .patch(`/users-ordered-products/${product?._id}`, { payment })
+      .then((data) => {
+        console.log(data);
+      });
   };
   return (
     <div className="my-4 bg-secondary">
@@ -84,8 +97,7 @@ const CheckOutFrom = ({ product }) => {
         <button
           className="btn btn-success"
           type="submit"
-          // disabled={!stripe || !clientSecret}
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret}
         >
           Pay
         </button>

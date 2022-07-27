@@ -10,7 +10,8 @@ import MyOrdersTable from "./My-orderes-table";
 const MyOrders = () => {
   const [modal, setModal] = useState("");
   const [user] = useAuthState(auth);
-  // get data from parms id
+
+  // get data from user ordered products
   const { data: products, isLoading } = useQuery(["myorders"], async () => {
     return await authClient.get(`/users-ordered-products/${user?.email}`);
   });
