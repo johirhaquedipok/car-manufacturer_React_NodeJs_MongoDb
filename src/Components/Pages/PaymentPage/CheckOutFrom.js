@@ -1,18 +1,19 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
-// import { toast } from "react-toastify";
 import { authClient } from "../../Utilities/axios-utils";
+// import { toast } from "react-toastify";
 import Error from "../../Utilities/Error";
 
 const CheckOutFrom = ({ product }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
+  const [cardSuccess, setCardSuccess] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
     const orderedQty = product?.orderedQty;
+    // Create PaymentIntent as soon as the page loads
     authClient.post(`/create-payment-intent`, { orderedQty }).then((data) => {
       if (data?.data?.clientSecret) {
         setClientSecret(data?.data?.clientSecret);
@@ -28,57 +29,41 @@ const CheckOutFrom = ({ product }) => {
       return;
     }
 
-    const card = elements.getElement(CardElement);
+    const cardElement = elements.getElement(CardElement);
 
-    if (card === null) {
+    if (cardElement === null) {
       return;
     }
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
-      card,
+      card: cardElement,
     });
 
     setCardError(error?.message || "");
-    // confirm card payment
+    setCardSuccess("");
+
     const { paymentIntent, error: intentError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: card,
+          card: cardElement,
           billing_details: {
-            name: "userEmail",
-            email: "email.com",
+            email: "email@email.com",
           },
         },
       });
 
+    console.log(paymentIntent);
+
     if (intentError) {
-      setCardError(intentError?.message);
+      setCardError(intentError);
     } else {
       setCardError("");
-
-      //store payment on database
-      //   const payment = {
-      //     appointment: _id,
-      //     transactionId: paymentIntent.id
-      // }
-      // fetch(`https://secret-dusk-46242.herokuapp.com/booking/${_id}`, {
-      //     method: 'PATCH',
-      //     headers: {
-      //         'content-type': 'application/json',
-      //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-      //     },
-      //     body: JSON.stringify(payment)
-      // }).then(res=>res.json())
-      // .then(data => {
-      //     setProcessing(false);
-      //     console.log(data);
-      // })
+      setCardSuccess("Payment Completed");
     }
   };
   return (
     <div className="my-4 bg-secondary">
-      {" "}
       <form onSubmit={handleSubmit}>
         <CardElement
           options={{
@@ -99,12 +84,15 @@ const CheckOutFrom = ({ product }) => {
         <button
           className="btn btn-success"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          // disabled={!stripe || !clientSecret}
+          disabled={!stripe}
         >
           Pay
         </button>
       </form>
       {cardError && <Error>cardError</Error>}
+      {cardSuccess && <p>{cardSuccess}</p>}
+      2223 0031 2200 3222
     </div>
   );
 };

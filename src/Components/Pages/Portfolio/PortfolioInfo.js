@@ -21,7 +21,7 @@ const PortfolioInfo = () => {
             <div className="text-base-content/70 my-3 text-sm">
               Worked as a computer operator for 4 years
               <br />
-              BA on English Literatur
+              BA on English Literature
               <br />
               Now Learning programming Language
             </div>
@@ -50,7 +50,7 @@ const PortfolioInfo = () => {
               className="h-6 w-6 stroke-current"
             >
               <path
-                strstrokeLinecap="round"
+                strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"

@@ -33,14 +33,13 @@ const MyOrdersTableBody = ({ product, idx, setModal }) => {
             </label>
           </>
         )} */}
-        (
+
         <Link
           to={`/dashboard/payment/${product._id}`}
           className="btn btn-xs btn-success"
         >
           Pay
         </Link>
-        )
       </th>
     </tr>
   );

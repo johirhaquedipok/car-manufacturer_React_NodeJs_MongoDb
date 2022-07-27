@@ -1,3 +1,6 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,91 +25,96 @@ import Portfolio from "./Components/Pages/Portfolio/Portfolio";
 import PurchasePage from "./Components/Pages/PurchasePage/PurchasePage";
 import Footer from "./Components/Pages/shared/Footer";
 import Navbar from "./Components/Pages/shared/Navbar";
+const stripePromise = loadStripe(
+  "pk_test_51LPYHDKMsF5jlr5wpCWb1Vd8cgi4r4EEVQJmE22rATlYM1rp94DtROGCbua3pu3G2Shw5clc5Jqe1oO38twJON2N00LfdoCZEJ"
+);
 function App() {
   return (
     <>
       <Navbar />
       <div className="max-w-screen-xl my-0 mx-auto">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="home" element={<HomePage />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="portfolio" element={<Portfolio />} />
-          <Route
-            path="purchase/:id"
-            element={
-              <RequireAuth>
-                <PurchasePage />
-              </RequireAuth>
-            }
-          />
-
-          {/* auth based routes for all users */}
-          <Route
-            path="dashboard"
-            element={
-              <RequireAuth>
-                <Dashboard />
-              </RequireAuth>
-            }
-          >
-            <Route path="usersprofile" element={<UsersProfile />} />
-
-            {/* auth based routes for regular users */}
-            <Route path="addareview" element={<AddAReview />} />
-            <Route path="myorders" element={<MyOrders />} />
-
-            {/* auth based routes for Admin */}
+        <Elements stripe={stripePromise}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="home" element={<HomePage />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="portfolio" element={<Portfolio />} />
             <Route
-              path="allusers"
-              element={
-                <RequireAdmin>
-                  <AllUsers />
-                </RequireAdmin>
-              }
-            />
-            <Route
-              path="addaproduct"
-              element={
-                <RequireAdmin>
-                  <AddAProduct />
-                </RequireAdmin>
-              }
-            />
-            <Route
-              path="mangeallorders"
-              element={
-                <RequireAdmin>
-                  <ManageAllOrders />
-                </RequireAdmin>
-              }
-            />
-            <Route
-              path="mangeproducts"
-              element={
-                <RequireAdmin>
-                  <ManageProducts />
-                </RequireAdmin>
-              }
-            />
-            <Route
-              path="payment/:id"
+              path="purchase/:id"
               element={
                 <RequireAuth>
-                  <PaymentPage />
+                  <PurchasePage />
                 </RequireAuth>
               }
             />
-          </Route>
 
-          {/* signin / sing up */}
-          <Route path="signin" element={<SignIn />} />
-          <Route path="singup" element={<SignUp />} />
+            {/* auth based routes for all users */}
+            <Route
+              path="dashboard"
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            >
+              <Route path="usersprofile" element={<UsersProfile />} />
 
-          <Route path="resetpwd" element={<ResetPassword />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <ToastContainer />
+              {/* auth based routes for regular users */}
+              <Route path="addareview" element={<AddAReview />} />
+              <Route path="myorders" element={<MyOrders />} />
+
+              {/* auth based routes for Admin */}
+              <Route
+                path="allusers"
+                element={
+                  <RequireAdmin>
+                    <AllUsers />
+                  </RequireAdmin>
+                }
+              />
+              <Route
+                path="addaproduct"
+                element={
+                  <RequireAdmin>
+                    <AddAProduct />
+                  </RequireAdmin>
+                }
+              />
+              <Route
+                path="mangeallorders"
+                element={
+                  <RequireAdmin>
+                    <ManageAllOrders />
+                  </RequireAdmin>
+                }
+              />
+              <Route
+                path="mangeproducts"
+                element={
+                  <RequireAdmin>
+                    <ManageProducts />
+                  </RequireAdmin>
+                }
+              />
+              <Route
+                path="payment/:id"
+                element={
+                  <RequireAuth>
+                    <PaymentPage />
+                  </RequireAuth>
+                }
+              />
+            </Route>
+
+            {/* signin / sing up */}
+            <Route path="signin" element={<SignIn />} />
+            <Route path="singup" element={<SignUp />} />
+
+            <Route path="resetpwd" element={<ResetPassword />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <ToastContainer />
+        </Elements>
       </div>
       <Footer />
     </>
