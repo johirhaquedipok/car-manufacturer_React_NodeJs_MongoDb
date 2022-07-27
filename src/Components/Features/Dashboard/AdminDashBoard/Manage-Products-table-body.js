@@ -9,7 +9,7 @@ const ManageProductsTableBody = ({ idx, product, setModal }) => {
       <th>
         <label
           htmlFor="my-modal-6"
-          className="btn btn-ghost btn-xs"
+          className="btn btn-error btn-xs"
           onClick={() => setModal(product._id)}
         >
           Delete

@@ -8,7 +8,7 @@ import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
 import UserDetaisl from "./User-details";
-
+const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
 const UsersProfile = ({ product }) => {
   const [user] = useAuthState(auth);
 
@@ -55,7 +55,7 @@ const UsersProfile = ({ product }) => {
     formData.append("image", image);
 
     // post image to the db
-    const imgStorageKey = "ef578a4bfff87ef72b159fd0382e8dad";
+
     const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
     const { data: img } = await axios.post(url, formData);
 

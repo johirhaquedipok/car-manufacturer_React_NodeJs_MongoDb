@@ -9,14 +9,14 @@ const AllUsersTableBody = ({ idx, user, makeAdmin }) => {
         <td>Regular Users</td>
       ) : (
         <td>
-          <div className="btn btn-xs btn-secondary">Admin</div>
+          <div className="badge  btn-primary">Admin</div>
         </td>
       )}
 
       <td>
         {user?.role !== "admin" && (
           <button
-            className="btn btn-xs"
+            className="btn btn-xs btn-secondary"
             onClick={() => makeAdmin(user?.userEmail)}
           >
             Make Admin
@@ -24,7 +24,7 @@ const AllUsersTableBody = ({ idx, user, makeAdmin }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs">Remove User</button>
+        <button className="btn btn-xs btn-error">Remove User</button>
       </td>
     </tr>
   );
