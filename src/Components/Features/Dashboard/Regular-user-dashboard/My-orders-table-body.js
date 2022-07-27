@@ -20,26 +20,27 @@ const MyOrdersTableBody = ({ product, idx, setModal }) => {
       </td>
       <td>{product?.orderedQty}</td>
       <td>{product?.orderDate}</td>
-
+      <td>
+        {product?.transactionId ? (
+          <div className="badge badge-secondary">paid</div>
+        ) : (
+          <Link to={`/dashboard/payment/${product._id}`}>
+            <div className="badge badge-primary">Pay</div>
+          </Link>
+        )}
+      </td>
       <th>
-        {/* {!price && (
+        {!product?.transactionId && (
           <>
             <label
-              htmlFor="my-modal-7"
-              className="btn btn-ghost btn-xs"
+              htmlFor="my-modal-6"
+              className="btn btn-error btn-xs"
               onClick={() => setModal(product._id)}
             >
               Cancel
             </label>
           </>
-        )} */}
-
-        <Link
-          to={`/dashboard/payment/${product._id}`}
-          className="btn btn-xs btn-success"
-        >
-          Pay
-        </Link>
+        )}
       </th>
     </tr>
   );

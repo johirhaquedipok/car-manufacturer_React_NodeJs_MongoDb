@@ -12,6 +12,7 @@ const MyOrdersTable = ({ products, setModal }) => {
             <th>Product Name</th>
             <th>Orderd Qty</th>
             <th>Orderd Date</th>
+            <th>Paid</th>
             <th>Cancel Order</th>
           </tr>
         </thead>

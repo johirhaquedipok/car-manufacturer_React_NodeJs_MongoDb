@@ -1,6 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
@@ -12,15 +13,37 @@ const MyOrders = () => {
   const [user] = useAuthState(auth);
 
   // get data from user ordered products
-  const { data: products, isLoading } = useQuery(["myorders"], async () => {
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useQuery(["myorders"], async () => {
     return await authClient.get(`/users-ordered-products/${user?.email}`);
   });
 
-  if (isLoading) {
+  // delete user products
+  const { mutate, isLoading: deleteloading } = useMutation(
+    async (id) => {
+      return await authClient.delete(`/users-ordered-products/${id}`);
+    },
+    {
+      onSuccess: (data) => {
+        if (data?.data?.acknowledged === true)
+          toast.success("Order has cancelled successfully");
+        refetch();
+      },
+      onError: (error) => {
+        console.log(error);
+        // toast.error("there was an error");
+      },
+    }
+  );
+
+  if (isLoading || deleteloading) {
     return <Loading />;
   }
   const handleDeleteProduct = (id) => {
-    console.log(id);
+    mutate(id);
   };
 
   return (

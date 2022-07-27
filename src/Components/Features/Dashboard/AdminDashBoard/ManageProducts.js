@@ -18,7 +18,7 @@ const ManageProducts = () => {
   });
 
   // post data to the server
-  const { mutate, isLoading1 } = useMutation(
+  const { mutate, isLoading: postLoading } = useMutation(
     async (id) => {
       return await authClient.delete(`/delete-products-collection/${id}`);
     },
@@ -36,7 +36,7 @@ const ManageProducts = () => {
     mutate(id);
   };
 
-  if (isLoading || isLoading1) {
+  if (isLoading || postLoading) {
     return <Loading />;
   }
 
