@@ -34,12 +34,12 @@ const AllUsers = () => {
   );
   //   delete a user
   const { mutate: userDelete, isLoading: userDeleteLoading } = useMutation(
-    async (email) => {
-      return await authClient.put(`/users-role/${email}`);
+    async (id) => {
+      return await authClient.delete(`/user-delete/${id}`);
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.matchedCount === 1) toast.success("user role updated");
+        if (data?.data?.acknowledge === true) toast.success("user deleted");
         refetch();
       },
       onError: (error) => {
@@ -52,7 +52,7 @@ const AllUsers = () => {
     mutate(email);
   };
   const handleDeleteUser = (id) => {
-    userDelete(id);
+    userDelete(modal);
   };
 
   if (isLoading || adminLoading || userDeleteLoading) {
