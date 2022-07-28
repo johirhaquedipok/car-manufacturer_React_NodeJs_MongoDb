@@ -2,7 +2,7 @@ import React from "react";
 
 const HomeReviewCard = ({ review }) => {
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl glass">
+    <div className="rounded-box  mx-2 grid flex-shrink-0 place-items-center   p-4 py-8 md:place-items-stretch xl:mx-0 glass">
       {/* user Image */}
       {/* <div className=" avatar">
         <div className="w-24 mask mask-squircle bg-base-contetnmask mask-squircle bg-base-content h-24 w-24 bg-opacity-10 p-px">

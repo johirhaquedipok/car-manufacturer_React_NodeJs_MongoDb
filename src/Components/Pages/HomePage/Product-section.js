@@ -19,7 +19,7 @@ const ProductSection = () => {
   }
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 ">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3">
       {products?.data?.map((product) => (
         <ProductCard key={product?._id} product={product} />
       ))}

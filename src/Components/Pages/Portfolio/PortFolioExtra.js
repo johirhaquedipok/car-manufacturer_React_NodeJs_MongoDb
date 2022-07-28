@@ -7,7 +7,7 @@ const PortFolioExtra = () => {
         <h2 className="mt-20 md:mt-32 mb-2 text-4xl font-extrabold md:text-6xl">
           Hungry to Learning
         </h2>
-        <h3 className="mb-5 text-3xl font-bold">Js is my starting language</h3>{" "}
+        <h3 className="mb-5 text-3xl font-bold">Js is my starting language</h3>
         <p className="mx-auto mb-5 w-full max-w-lg">
           I am still learning <br />
           with following starters like{" "}

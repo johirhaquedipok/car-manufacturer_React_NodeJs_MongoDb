@@ -2,7 +2,7 @@ import React from "react";
 
 const SummarySection = () => {
   return (
-    <div className="flex justify-center items-center py-5">
+    <div className="g-base-200 flex flex-col items-center gap-20 py-20">
       <div className="stats stats-vertical md:stats-horizontal shadow">
         <div className="stat">
           <div className="stat-figure text-primary">

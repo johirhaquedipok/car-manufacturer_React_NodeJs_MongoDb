@@ -12,21 +12,23 @@ const Dashboard = () => {
     <>
       <div className="drawer drawer-mobile mb-5">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
+        <div className="drawer-content px-2 ">
           {/* Page content here */}
           <h2 className="text-5xl text-purple-500">Dashboard</h2>
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Open drawer
-          </label>
+          <div className="flex items-center justify-center mb-4">
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-primary drawer-button lg:hidden"
+            >
+              Open drawer
+            </label>
+          </div>
 
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side bg-base-200">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+          <ul className="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content">
             {/* Sidebar content here */}
             {/* <li>
             <Link to="/dashboard">My Dash Board</Link>

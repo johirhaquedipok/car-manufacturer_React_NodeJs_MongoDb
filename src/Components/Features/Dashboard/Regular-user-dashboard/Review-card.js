@@ -50,38 +50,34 @@ const ReviewCard = ({ rating, setRating }) => {
   }
 
   return (
-    <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <div className="card-body ">
-          <h2 className="card-title pb-2">
-            Write a review about our services!
-          </h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="pb-2 justify-center">
-              <textarea
-                className="textarea textarea-bordered h-24 w-full"
-                placeholder="write your review"
-                {...register("review", {
-                  required: true,
-                })}
-              ></textarea>
+    <div className="rounded-box  mx-2 grid flex-shrink-0 place-items-center   p-4 py-8 md:place-items-stretch xl:mx-0 ">
+      <div className="card-body">
+        <h2 className="card-title pb-2">Write a review about our services!</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="pb-2 justify-center">
+            <textarea
+              className="textarea textarea-bordered h-24 w-full"
+              placeholder="write your review"
+              {...register("review", {
+                required: true,
+              })}
+            ></textarea>
 
-              {errors.review?.type === "required" && (
-                <p className="text-error">Review description is required</p>
-              )}
-            </div>
+            {errors.review?.type === "required" && (
+              <p className="text-error">Review description is required</p>
+            )}
+          </div>
 
-            <div className="pb-2">
-              <StarRating rating={rating} setRating={setRating} />
-            </div>
+          <div className="pb-2">
+            <StarRating rating={rating} setRating={setRating} />
+          </div>
 
-            <div className="card-actions justify-center">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="card-actions justify-center">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

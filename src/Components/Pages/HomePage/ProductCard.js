@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl">
+    <div className="rounded-box grid flex-shrink-0 place-items-center md:place-items-stretch xl:mx-0 ">
       <figure>
         <img src={product?.img} alt={product?.partsName} />
       </figure>
