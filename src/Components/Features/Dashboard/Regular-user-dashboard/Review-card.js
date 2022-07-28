@@ -8,7 +8,7 @@ import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
 import StarRating from "../../Ui/Star-rating";
 
-const ReviewCard = ({ rating, setRating }) => {
+const ReviewCard = ({ rating, setRating, refetch, userProfile }) => {
   const [user] = useAuthState(auth);
   // post data to the server
   const { mutate, isLoading } = useMutation(
@@ -17,8 +17,9 @@ const ReviewCard = ({ rating, setRating }) => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.success === true) toast.success("success");
+        if (data?.data?.acknowledged === true) toast.success("success");
         reset();
+        refetch();
       },
       onError: () => {
         console.log("there was an error");
@@ -40,6 +41,8 @@ const ReviewCard = ({ rating, setRating }) => {
       userEmail: user?.email,
       userReview: data.review,
       userRating: rating,
+      userName: userProfile?.data?.userName,
+      userPhoto: userProfile?.data?.userPhoto,
     };
     mutate(userOpinion);
   };

@@ -22,7 +22,6 @@ const Navbar = () => {
   const signout = () => {
     signOut(auth);
   };
-  console.log(avatarpic);
   const menuNav = (
     <ul
       tabIndex="0"

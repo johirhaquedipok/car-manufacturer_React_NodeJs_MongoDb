@@ -47,13 +47,6 @@ const SummarySection = () => {
         </div>
 
         <div className="stat">
-          <div className="stat-figure text-secondary">
-            <div className="avatar online">
-              <div className="w-16 rounded-full">
-                <img src="https://placeimg.com/128/128/people" alt="" />
-              </div>
-            </div>
-          </div>
           <div className="stat-value">86%</div>
           <div className="stat-title">More product value</div>
           <div className="stat-desc text-secondary">

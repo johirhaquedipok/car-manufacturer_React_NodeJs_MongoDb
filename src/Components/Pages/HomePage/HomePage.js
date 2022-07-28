@@ -1,3 +1,4 @@
+import ExtrSection from "./ExtrSection";
 import Hero from "./Hero";
 import ProductSection from "./Product-section";
 import ReviewSection from "./Review-section";
@@ -17,6 +18,7 @@ const HomePage = () => {
       <ReviewSection />
 
       <SummarySection />
+      <ExtrSection />
     </div>
   );
 };
