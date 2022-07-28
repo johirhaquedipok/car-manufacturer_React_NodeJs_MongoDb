@@ -54,8 +54,6 @@ const CheckOutFrom = ({ product }) => {
         },
       });
 
-    console.log(paymentIntent);
-
     if (intentError) {
       setCardError(intentError);
     } else {
@@ -76,35 +74,37 @@ const CheckOutFrom = ({ product }) => {
       });
   };
   return (
-    <div className="my-4 bg-secondary">
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
+    <div className="card bg-base-300 text-black">
+      <div className="my-4  card-body">
+        <form onSubmit={handleSubmit}>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
                   color: "#aab7c4",
+                  "::placeholder": {
+                    color: "#aab7c4",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
                 },
               },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        <button
-          className="btn btn-success"
-          type="submit"
-          disabled={!stripe || !clientSecret}
-        >
-          Pay
-        </button>
-      </form>
-      {cardError && <Error>cardError</Error>}
-      {cardSuccess && <p>{cardSuccess}</p>}
-      2223 0031 2200 3222
+            }}
+          />
+          <button
+            className="btn btn-success"
+            type="submit"
+            disabled={!stripe || !clientSecret}
+          >
+            Pay
+          </button>
+        </form>
+        {cardError && <Error>cardError</Error>}
+        {cardSuccess && <p className="text-white">{cardSuccess}</p>}
+        <p className="text-white">2223 0031 2200 3222</p>
+      </div>
     </div>
   );
 };

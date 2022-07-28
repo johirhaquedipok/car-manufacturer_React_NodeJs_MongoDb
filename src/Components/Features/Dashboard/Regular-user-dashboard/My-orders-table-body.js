@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const MyOrdersTableBody = ({ product, idx, setModal }) => {
-  const price = true;
   return (
     <tr>
       <th>{idx + 1}</th>

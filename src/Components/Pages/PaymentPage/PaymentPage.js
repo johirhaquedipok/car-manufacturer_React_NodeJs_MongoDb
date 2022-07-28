@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { authClient } from "../../Utilities/axios-utils";
 import Loading from "../../Utilities/Loading";
 import CheckOutFrom from "./CheckOutFrom";
+import PaymentProductCard from "./PaymentProductCard";
 
 const PaymentPage = () => {
   const { id } = useParams();
@@ -13,8 +14,10 @@ const PaymentPage = () => {
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <div>
+      <PaymentProductCard product={product?.data} />
       <CheckOutFrom product={product?.data} />
     </div>
   );
