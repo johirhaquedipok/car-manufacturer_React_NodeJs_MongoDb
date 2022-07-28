@@ -21,7 +21,6 @@ const AllUsers = () => {
     },
     {
       onSuccess: (data) => {
-        console.log(data);
         if (data?.data?.matchedCount === 1) toast.success("user role updated");
         refetch();
       },
@@ -32,7 +31,6 @@ const AllUsers = () => {
   );
 
   const makeAdmin = (email) => {
-    console.log(email);
     mutate(email);
   };
 

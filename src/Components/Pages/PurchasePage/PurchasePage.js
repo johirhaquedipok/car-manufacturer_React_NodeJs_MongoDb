@@ -1,13 +1,15 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { authClient, client } from "../../Utilities/axios-utils";
+import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
 
 const PurchasePage = () => {
+  const [error, setError] = useState("");
   const params = useParams();
   const date = format(new Date(), "PP");
   // get data from parms id
@@ -39,18 +41,14 @@ const PurchasePage = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm({
-    defaultValues: {
-      orderedQty: product?.data?.minimumOrderQty,
-    },
-  });
-  // update quantity field after fetching data
+  } = useForm();
+  // watch quantity field after fetching data
   const orderedQty = watch("orderedQty");
 
   // update quantity field after fetching data
   useEffect(() => {
     setValue("orderedQty", product?.data?.minimumOrderQty);
-  }, [setValue, product?.data?.minimumOrderQty]);
+  }, [setValue, product]);
 
   // loading
   if (isLoading || isLoading1) {
@@ -77,18 +75,20 @@ const PurchasePage = () => {
   //   add  qty
   const handleAddQty = (e) => {
     if (orderedQty < product?.data?.availableQty) {
-      setValue("orderedQty", +orderedQty + 1);
+      setError("");
+      setValue("orderedQty", parseInt(orderedQty) + 1);
     } else {
-      alert("you can not do that");
+      setError("orderQty cannot be more than available qty");
     }
   };
 
   //   delet qty
   const handleDeleteQty = (e) => {
     if (orderedQty > product?.data?.minimumOrderQty) {
+      setError("");
       setValue("orderedQty", parseInt(orderedQty - 1));
     } else {
-      alert("you can not do that");
+      setError("orderQty cannot be less than available qty");
     }
   };
 
@@ -102,6 +102,12 @@ const PurchasePage = () => {
         <div className="card-body">
           <h2 className="card-title">{product?.data?.partsName}</h2>
           <p>{product?.data?.description.slice(0, 150)}</p>
+          <div className="flex items-center p-1">
+            <span className="label-text w-48 text-md">Available Qty</span>
+            <span className="text-md  badge">
+              {product?.data?.availableQty}
+            </span>
+          </div>
           {/* product details */}
 
           {/* form */}
@@ -116,14 +122,9 @@ const PurchasePage = () => {
                 </div>
                 <input
                   className="mx-2 border text-center w-12"
-                  type="text"
+                  type="number"
                   {...register("orderedQty", {
                     required: true,
-
-                    /*  validate: {
-                      minqty: (value) => parseInt(value) > 735,
-                      maxqty: (value) => parseInt(value) < 800,
-                    }, */
                   })}
                 />
                 <div className="btn btn-sm font-bold" onClick={handleDeleteQty}>
@@ -131,7 +132,17 @@ const PurchasePage = () => {
                 </div>
               </div>
             </div>
-
+            <div>
+              {(orderedQty < product?.data?.minimumOrderQty ||
+                orderedQty > product?.data?.availableQty ||
+                error) && (
+                <Error>
+                  {error
+                    ? error
+                    : "Order Quanty cannot be less than minimumOrderQty"}
+                </Error>
+              )}
+            </div>
             {/* example end */}
 
             {/* your email */}
@@ -187,7 +198,14 @@ const PurchasePage = () => {
             </div>
 
             <div className="card-actions  justify-center">
-              <button type="submit" className="btn btn-primary btn-block">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                disabled={
+                  orderedQty > product?.data?.availableQty ||
+                  orderedQty < product?.data?.minimumOrderQty
+                }
+              >
                 Purchase
               </button>
             </div>
