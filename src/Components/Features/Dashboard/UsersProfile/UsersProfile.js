@@ -117,7 +117,7 @@ const UsersProfile = ({ product }) => {
                   </label>
                   <input
                     className=" w-full input input-bordered"
-                    type="number"
+                    type="text"
                     placeholder="Your Phone No"
                     {...register("phone", {
                       required: true,

@@ -29,7 +29,7 @@ const AllUsersTableBody = ({ idx, user, makeAdmin, setModal }) => {
           className="btn btn-xs btn-error"
           onClick={() => setModal(user?._id)}
         >
-          Cancel
+          Delete
         </label>
       </td>
     </tr>
