@@ -23,12 +23,20 @@ const ManageAllOrders = () => {
   }
   return (
     <div>
-      <p className="text-center text-4xl">Manage all orders</p>
-      <AllOrderedTable products={products?.data} setModal={setModal} />
-      <ConfirmModalDelete
-        modal={modal}
-        handleDeleteProduct={handleDeleteProduct}
-      />
+      {products?.data.length !== 0 ? (
+        <div>
+          <p className="text-center text-4xl pb-5">Manage all orders</p>
+          <AllOrderedTable products={products?.data} setModal={setModal} />
+          <ConfirmModalDelete
+            modal={modal}
+            handleDeleteProduct={handleDeleteProduct}
+          />
+        </div>
+      ) : (
+        <div className=" text-center text-lg font-extrabold sm:text-2xl lg:text-3xl lg:py-2">
+          No Product Ordered yet
+        </div>
+      )}
     </div>
   );
 };

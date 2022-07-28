@@ -8,7 +8,7 @@ const PortfolioHero = () => {
           Welcome!
         </h1>
         <p className="font-title text-lg font-extrabold sm:text-2xl lg:text-3xl lg: py-2">
-          I'm Johir Haque dipok. Learning programming language
+          I'm Johir Haque dipok. <br /> Learning programming language
         </p>
         <button className="btn btn-primary my-4">Get Started</button>
       </div>

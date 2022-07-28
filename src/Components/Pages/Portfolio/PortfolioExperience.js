@@ -3,7 +3,9 @@ import React from "react";
 const PortfolioExperience = () => {
   return (
     <div className=" rounded-box  mx-2 grid flex-shrink-0 place-items-center   p-4 py-8 md:place-items-stretch xl:mx-0 ">
-      <h3 className="mb-5 text-3xl font-bold">Skills I am learning</h3>{" "}
+      <h3 className="mb-5 text-3xl font-bold text-center">
+        Skills I've been learning
+      </h3>{" "}
       <div className="flex items-center p-1">
         <span className="text-base-content/70 w-48 text-xs">HTML</span>{" "}
         <progress

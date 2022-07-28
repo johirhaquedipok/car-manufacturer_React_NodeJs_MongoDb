@@ -57,7 +57,14 @@ function App() {
                 </RequireAuth>
               }
             >
-              <Route path="usersprofile" element={<UsersProfile />} />
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <UsersProfile />
+                  </RequireAuth>
+                }
+              />
 
               {/* auth based routes for regular users */}
               <Route path="addareview" element={<AddAReview />} />

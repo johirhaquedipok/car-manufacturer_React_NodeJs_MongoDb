@@ -14,7 +14,7 @@ const Dashboard = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content px-2 ">
           {/* Page content here */}
-          <h2 className="text-5xl text-purple-500">Dashboard</h2>
+          <h2 className="text-5xl text-purple-500 text-center">Dashboard</h2>
           <div className="flex items-center justify-center mb-4">
             <label
               htmlFor="my-drawer-2"
@@ -30,12 +30,10 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 overflow-y-auto w-80 bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            {/* <li>
-            <Link to="/dashboard">My Dash Board</Link>
-          </li> */}
             <li>
-              <Link to="/dashboard/usersprofile">User Profile</Link>
+              <Link to="/dashboard">User Profile</Link>
             </li>
+
             {!admin && (
               <>
                 <li>

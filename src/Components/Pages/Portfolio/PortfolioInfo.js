@@ -29,9 +29,9 @@ const PortfolioInfo = () => {
         </div>{" "}
         <div className="dropdown w-full mb-3">
           <div className="mt-2 text-center">
-            <div className="badge badge-ghost">Wed Design</div>{" "}
-            <div className="badge badge-ghost">Web Development</div>{" "}
-            <div className="badge badge-ghost">Programming</div>
+            <div className="badge ">Wed Design</div>{" "}
+            <div className="badge ">Web Development</div>{" "}
+            <div className="badge ">Programming</div>
           </div>
         </div>
       </div>

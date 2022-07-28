@@ -39,14 +39,21 @@ const ManageProducts = () => {
   if (isLoading || postLoading) {
     return <Loading />;
   }
-
   return (
     <div>
-      <ManageProductsTable products={products?.data} setModal={setModal} />
-      <ConfirmModalDelete
-        handleDeleteProduct={handleDeleteProduct}
-        modal={modal}
-      />
+      {products?.data.length !== 0 ? (
+        <div>
+          <ManageProductsTable products={products?.data} setModal={setModal} />
+          <ConfirmModalDelete
+            handleDeleteProduct={handleDeleteProduct}
+            modal={modal}
+          />
+        </div>
+      ) : (
+        <div className=" text-center text-lg font-extrabold sm:text-2xl lg:text-3xl lg:py-2">
+          No Products yet
+        </div>
+      )}
     </div>
   );
 };

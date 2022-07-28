@@ -1,9 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import auth from "../../../firebase.init";
 import { authClient, client } from "../../Utilities/axios-utils";
 import Error from "../../Utilities/Error";
 import Loading from "../../Utilities/Loading";
@@ -12,6 +14,7 @@ const PurchasePage = () => {
   const [error, setError] = useState("");
   const params = useParams();
   const date = format(new Date(), "PP");
+  const [user] = useAuthState(auth);
   // get data from parms id
   const {
     data: product,
@@ -66,7 +69,7 @@ const PurchasePage = () => {
       partsName: product?.data?.partsName,
       orderDate: date,
       img: product?.data?.img,
-      userEmail: data.email,
+      userEmail: user?.email,
       userPhone: data.phone,
       userAddress: data.address,
       availableQty: product?.data?.availableQty - parseInt(data?.orderedQty),
@@ -98,14 +101,14 @@ const PurchasePage = () => {
   return (
     <div className="flex">
       {/* card 3 */}
-      <div className="card card-side bg-base-100 shadow-xl">
+      <div className="card card-side flex-col md:flex-row bg-base-100 shadow-xl">
         <figure className="px-7 ">
           <img src={product?.data?.img} alt={product?.data?.partsName} />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{product?.data?.partsName}</h2>
           <p>{product?.data?.description.slice(0, 150)}</p>
-          <div className="flex items-center p-1">
+          <div className="flex  items-center p-1">
             <span className="label-text w-48 text-md">Available Qty</span>
             <span className="text-md  badge">
               {product?.data?.availableQty}
@@ -117,14 +120,14 @@ const PurchasePage = () => {
 
           <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
             {/* order quantity */}
-            <div className="flex items-center p-1">
+            <div className="flex  items-center p-1">
               <span className="label-text w-48 text-md">Minmum Quantity</span>
-              <div className="flex justify-center w-1/5">
+              <div className="flex justify-center items-center w-1/5">
                 <div className="btn btn-sm font-bold" onClick={handleAddQty}>
                   +
                 </div>
                 <input
-                  className="mx-2 border text-center w-12"
+                  className="mx-2 text-center w-16 input input-bordered "
                   type="number"
                   {...register("orderedQty", {
                     required: true,
@@ -148,29 +151,13 @@ const PurchasePage = () => {
             </div>
             {/* example end */}
 
-            {/* your email */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium tracking-wide">Email</label>
-              <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type="email"
-                placeholder="Your Email"
-                {...register("email", {
-                  required: true,
-                })}
-              />
-              {errors.email?.type === "required" && (
-                <p className="text-error">Email is required</p>
-              )}
-            </div>
-
             {/* your phone number*/}
             <div className="space-y-2">
               <label className="text-sm font-medium tracking-wide">
                 Phone No
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" input input-bordered  w-full"
                 type="number"
                 placeholder="Your Phone No"
                 {...register("phone", {
@@ -188,7 +175,7 @@ const PurchasePage = () => {
                 Your Address
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" input input-bordered  w-full"
                 type="text"
                 placeholder="Your Address"
                 {...register("address", {

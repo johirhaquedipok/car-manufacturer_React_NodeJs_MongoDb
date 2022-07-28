@@ -84,16 +84,13 @@ const UsersProfile = ({ product }) => {
         {/* user profile card */}
 
         {/* user profile form to update */}
-        <p className="text-center text-4xl">Update Profile</p>
+        <p className="text-center text-4xl my-5">Update Profile</p>
         <div className="flex">
           <div className="card card-side bg-base-100 shadow-xl">
             <figure className="px-7 ">
               <img src={product?.data?.img} alt={product?.data?.partsName} />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{product?.data?.partsName}</h2>
-              <p>{product?.data?.description.slice(0, 150)}</p>
-
               {/* user profile form */}
               <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
                 {/* your name */}
@@ -102,7 +99,7 @@ const UsersProfile = ({ product }) => {
                     Name
                   </label>
                   <input
-                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    className=" w-full input input-bordered "
                     type="name"
                     placeholder="Your Name"
                     {...register("name", {
@@ -119,7 +116,7 @@ const UsersProfile = ({ product }) => {
                     Phone No
                   </label>
                   <input
-                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    className=" w-full input input-bordered"
                     type="number"
                     placeholder="Your Phone No"
                     {...register("phone", {
@@ -137,7 +134,7 @@ const UsersProfile = ({ product }) => {
                     Your Address
                   </label>
                   <input
-                    className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    className=" w-full input input-bordered"
                     type="text"
                     placeholder="Your Address"
                     {...register("address", {
@@ -155,7 +152,7 @@ const UsersProfile = ({ product }) => {
                     Your Profile Photo
                   </label>
                   <input
-                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                    className=" w-full input input-bordered"
                     type="file"
                     placeholder="Your Photo"
                     {...register("photo", {

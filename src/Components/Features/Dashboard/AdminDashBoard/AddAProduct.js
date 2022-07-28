@@ -73,7 +73,7 @@ const AddAProduct = () => {
                 Parts Name
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" w-full w-full input input-bordered"
                 type="text"
                 placeholder="Parts Name"
                 {...register("partsName", {
@@ -90,7 +90,7 @@ const AddAProduct = () => {
                 Company Name
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" w-full input input-bordered"
                 type="text"
                 placeholder="Company Name"
                 {...register("company", {
@@ -110,7 +110,7 @@ const AddAProduct = () => {
                 Price per Unit
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" w-full input input-bordered"
                 type="number"
                 placeholder="Price Per Unit"
                 {...register("pricePerUnit", {
@@ -134,7 +134,7 @@ const AddAProduct = () => {
                 Minimum Order Qty
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" w-full input input-bordered"
                 type="number"
                 placeholder="Minimum Order Qty"
                 {...register("minimumOrderQty", {
@@ -157,7 +157,7 @@ const AddAProduct = () => {
                 Available Qty
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" w-full input input-bordered"
                 type="number"
                 placeholder="Available Qty"
                 {...register("availableQty", {
@@ -178,7 +178,7 @@ const AddAProduct = () => {
                 Product Description
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className=" w-full input input-bordered"
                 type="text"
                 placeholder="description"
                 {...register("description", {
@@ -196,7 +196,7 @@ const AddAProduct = () => {
                 Product Image
               </label>
               <input
-                className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                className="w-full input input-bordered"
                 type="file"
                 placeholder="Product Image"
                 {...register("img", {

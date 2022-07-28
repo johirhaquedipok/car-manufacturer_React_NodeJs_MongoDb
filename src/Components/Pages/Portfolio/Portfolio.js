@@ -11,7 +11,7 @@ const Portfolio = () => {
   return (
     <div>
       <PortfolioHero />
-      <div className="grid  md:grid-cols-2  gap-4">
+      <div className="grid  md:grid-cols-2  gap-4 mt-5  lg:py-14">
         <PortfolioInfo />
         <PortfolioExperience />
       </div>
