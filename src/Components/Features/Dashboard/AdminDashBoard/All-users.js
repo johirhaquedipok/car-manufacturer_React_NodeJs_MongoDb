@@ -1,10 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { authClient } from "../../../Utilities/axios-utils";
 import Loading from "../../../Utilities/Loading";
-import AllUsersTableBody from "./All-users-table-body";
+import ConfirmModalDelete from "../../Ui/ConfirmModalDelete";
+import AllUsersTable from "./All-users-table";
 const AllUsers = () => {
+  const [modal, setModal] = useState("");
+
   // users
   const {
     data: users,
@@ -15,7 +18,22 @@ const AllUsers = () => {
   });
 
   //   make admin
-  const { mutate } = useMutation(
+  const { mutate, isLoading: adminLoading } = useMutation(
+    async (email) => {
+      return await authClient.put(`/users-role/${email}`);
+    },
+    {
+      onSuccess: (data) => {
+        if (data?.data?.matchedCount === 1) toast.success("user role updated");
+        refetch();
+      },
+      onError: (error) => {
+        toast.error(error);
+      },
+    }
+  );
+  //   delete a user
+  const { mutate: userDelete, isLoading: userDeleteLoading } = useMutation(
     async (email) => {
       return await authClient.put(`/users-role/${email}`);
     },
@@ -33,37 +51,25 @@ const AllUsers = () => {
   const makeAdmin = (email) => {
     mutate(email);
   };
+  const handleDeleteUser = (id) => {
+    userDelete(id);
+  };
 
-  if (isLoading) {
+  if (isLoading || adminLoading || userDeleteLoading) {
     return <Loading />;
   }
   return (
     <div>
       All Users
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          {/* <!-- head --> */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Make Admin</th>
-              <th>Remove User</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users?.data?.map((user, idx) => (
-              <AllUsersTableBody
-                key={user._id}
-                user={user}
-                idx={idx}
-                makeAdmin={makeAdmin}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <AllUsersTable
+        users={users?.data}
+        setModal={setModal}
+        makeAdmin={makeAdmin}
+      />
+      <ConfirmModalDelete
+        modal={modal}
+        handleDeleteProduct={handleDeleteUser}
+      />
     </div>
   );
 };

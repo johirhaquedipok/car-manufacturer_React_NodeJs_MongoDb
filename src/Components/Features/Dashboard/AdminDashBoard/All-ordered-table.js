@@ -1,7 +1,7 @@
 import React from "react";
 import AllOrderesTableBody from "./All-orders-table-body";
 
-const AllOrderedTable = ({ products, setModal }) => {
+const AllOrderedTable = ({ products, setModal, handleShipping }) => {
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -13,6 +13,7 @@ const AllOrderedTable = ({ products, setModal }) => {
             <th>Parts Name</th>
             <th>Orderd Qty</th>
             <th>Orderd Date</th>
+            <th>Status</th>
             <th>Cancel Order</th>
           </tr>
         </thead>
@@ -24,6 +25,7 @@ const AllOrderedTable = ({ products, setModal }) => {
               product={product}
               idx={idx}
               setModal={setModal}
+              handleShipping={handleShipping}
             />
           ))}
         </tbody>

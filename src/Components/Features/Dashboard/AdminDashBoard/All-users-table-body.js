@@ -1,6 +1,6 @@
 import React from "react";
 
-const AllUsersTableBody = ({ idx, user, makeAdmin }) => {
+const AllUsersTableBody = ({ idx, user, makeAdmin, setModal }) => {
   return (
     <tr key={user?._id}>
       <th>{idx + 1}</th>
@@ -24,7 +24,13 @@ const AllUsersTableBody = ({ idx, user, makeAdmin }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs btn-error">Remove User</button>
+        <label
+          htmlFor="my-modal-6"
+          className="btn btn-xs btn-error"
+          onClick={() => setModal(user?._id)}
+        >
+          Cancel
+        </label>
       </td>
     </tr>
   );

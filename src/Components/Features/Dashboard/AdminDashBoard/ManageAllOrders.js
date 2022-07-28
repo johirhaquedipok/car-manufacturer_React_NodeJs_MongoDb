@@ -22,19 +22,41 @@ const ManageAllOrders = () => {
     },
     {
       onSuccess: (data) => {
-        if (data?.data?.acknowledged === true) refetch();
-        toast.success("Product Delete Success");
+        if (data?.data?.acknowledged === true)
+          toast.success("Product Delete Success");
+        refetch();
       },
       onError: () => {
         toast.error("there was an error");
       },
     }
   );
+  const { mutate: shipping, isLoading: shippingLoading } = useMutation(
+    async (id) => {
+      return await authClient.patch(`/users-ordered-products-shipping/${id}`);
+    },
+    {
+      onSuccess: (data) => {
+        if (data?.data?.acknowledged === true)
+          toast.success("Product shipped Successfully");
+        refetch();
+      },
+      onError: () => {
+        toast.error("there was an error");
+      },
+    }
+  );
+
+  // delete order
+  const handleShipping = (id) => {
+    shipping(id);
+  };
+  // delete order
   const handleDeleteProduct = (id) => {
     mutate(id);
   };
 
-  if (isLoading) {
+  if (isLoading || postLoading || shippingLoading) {
     return <Loading />;
   }
   return (
@@ -42,7 +64,11 @@ const ManageAllOrders = () => {
       {products?.data.length !== 0 ? (
         <div>
           <p className="text-center text-4xl pb-5">Manage all orders</p>
-          <AllOrderedTable products={products?.data} setModal={setModal} />
+          <AllOrderedTable
+            products={products?.data}
+            setModal={setModal}
+            handleShipping={handleShipping}
+          />
           <ConfirmModalDelete
             modal={modal}
             handleDeleteProduct={handleDeleteProduct}
