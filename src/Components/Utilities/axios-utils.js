@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export const client = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://sonikon.herokuapp.com",
 });
 
 export const authClient = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://sonikon.herokuapp.com",
   headers: { Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
 });
