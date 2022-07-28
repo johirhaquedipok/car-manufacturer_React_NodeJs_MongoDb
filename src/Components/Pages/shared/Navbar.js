@@ -1,18 +1,28 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import AvatarCard from "../../Features/Ui/AvatarCard";
+import { authClient } from "../../Utilities/axios-utils";
 import CustomLink from "./CustomLink/CustomLink";
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const Navbar = () => {
+  const [avatarpic, setAvatarPic] = useState("");
   const [user] = useAuthState(auth);
+  // load user data from db
+
+  useEffect(() => {
+    authClient
+      .get(`/users-profile/${user?.email}`)
+      .then((data) => setAvatarPic(data?.data?.userPhoto));
+  }, [user]);
 
   const signout = () => {
     signOut(auth);
   };
-
+  console.log(avatarpic);
   const menuNav = (
     <ul
       tabIndex="0"
@@ -84,14 +94,21 @@ const Navbar = () => {
                     <div className="dropdown dropdown-left">
                       <div className="avatar online " tabIndex="0">
                         <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
-                          <img src={user?.photoURL} alt={user?.displayName} />
+                          <img
+                            src={avatarpic ? avatarpic : user?.userPhoto}
+                            alt={user?.displayName}
+                          />
                         </div>
                       </div>
                       <div
                         tabIndex="0"
                         className="menu menu-compact dropdown-content mt-3 p-2 rounded-box w-52 lg:w-72"
                       >
-                        <AvatarCard user={user} signout={signout} />
+                        <AvatarCard
+                          user={user}
+                          signout={signout}
+                          avatarpic={avatarpic}
+                        />
                       </div>
                     </div>
                   </li>

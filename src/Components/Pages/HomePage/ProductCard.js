@@ -10,15 +10,15 @@ const ProductCard = ({ product }) => {
         <h2 className="card-title font-extrabold ">{product?.partsName}</h2>
         <h2 className="card-title font-bold ">{product?.company}</h2>
         <p> {product?.description?.slice(0, 150)} </p>
-        {/* Price */}
-        <div className="flex items-center p-1">
-          <span className="label-text w-48 text-md">Price Per Unit</span>
-          <span className="text-md  badge">{product?.pricePerUnit}</span>
-        </div>
         {/* available quantity*/}
         <div className="flex items-center p-1">
           <span className="label-text w-48 text-md">Available Quantity</span>
           <span className="text-md  badge ">${product?.availableQty}</span>
+        </div>
+        {/* Price */}
+        <div className="flex items-center p-1">
+          <span className="label-text w-48 text-md">Price Per Unit</span>
+          <span className="text-md  badge">{product?.pricePerUnit}</span>
         </div>
         {/* Order Quantity */}
         <div className="flex items-center p-1">

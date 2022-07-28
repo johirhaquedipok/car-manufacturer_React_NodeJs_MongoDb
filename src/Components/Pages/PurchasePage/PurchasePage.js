@@ -13,19 +13,23 @@ const PurchasePage = () => {
   const params = useParams();
   const date = format(new Date(), "PP");
   // get data from parms id
-  const { data: product, isLoading } = useQuery(["singleData"], async () => {
+  const {
+    data: product,
+    isLoading,
+    refetch,
+  } = useQuery(["singleData"], async () => {
     return await client.get(`/products/${params.id}`);
   });
 
   // post data to the server
-  const { mutate, isLoading1 } = useMutation(
+  const { mutate, isLoading: loadingPurchase } = useMutation(
     async (value) => {
       return await authClient.post(`/users-ordered-products`, value);
     },
     {
       onSuccess: (data) => {
         if (data?.data?.result.acknowledged === true) toast.success("success");
-        reset();
+        refetch();
       },
       onError: () => {
         toast.error("there was an error");
@@ -40,7 +44,6 @@ const PurchasePage = () => {
     setValue,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm();
   // watch quantity field after fetching data
   const orderedQty = watch("orderedQty");
@@ -51,7 +54,7 @@ const PurchasePage = () => {
   }, [setValue, product]);
 
   // loading
-  if (isLoading || isLoading1) {
+  if (isLoading || loadingPurchase) {
     return <Loading />;
   }
 
@@ -66,9 +69,9 @@ const PurchasePage = () => {
       userEmail: data.email,
       userPhone: data.phone,
       userAddress: data.address,
+      availableQty: product?.data?.availableQty - parseInt(data?.orderedQty),
       price: parseInt(data?.orderedQty) * parseInt(product?.data?.pricePerUnit),
     };
-
     mutate(productOrder);
   };
 

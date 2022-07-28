@@ -33,6 +33,7 @@ const UsersProfile = ({ product }) => {
       onSuccess: (data) => {
         if (data?.data?.acknowledged === true) toast.success("profile updated");
         refetch();
+        reset();
       },
       onError: () => {
         toast("there was an error user profile");
@@ -68,14 +69,12 @@ const UsersProfile = ({ product }) => {
     const { data: img } = await axios.post(url, formData);
 
     const profileData = {
-      userEmail: data.email,
       userPhone: data.phone,
       userAddress: data.address,
       userName: data.name,
       userPhoto: img?.data?.url,
     };
     mutate(profileData);
-    reset();
   };
 
   return (
@@ -114,24 +113,6 @@ const UsersProfile = ({ product }) => {
                     <p className="text-error">Name is required</p>
                   )}
                 </div>
-                {/* your email */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium tracking-wide">
-                    Email
-                  </label>
-                  <input
-                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                    type="email"
-                    placeholder="Your Email"
-                    {...register("email", {
-                      required: true,
-                    })}
-                  />
-                  {errors.email?.type === "required" && (
-                    <p className="text-error">Email is required</p>
-                  )}
-                </div>
-
                 {/* your phone number*/}
                 <div className="space-y-2">
                   <label className="text-sm font-medium tracking-wide">

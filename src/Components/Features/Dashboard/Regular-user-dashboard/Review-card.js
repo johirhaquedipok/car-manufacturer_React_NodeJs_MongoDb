@@ -18,7 +18,7 @@ const ReviewCard = ({ rating, setRating }) => {
     {
       onSuccess: (data) => {
         if (data?.data?.success === true) toast.success("success");
-        console.log(data);
+        reset();
       },
       onError: () => {
         console.log("there was an error");
@@ -29,8 +29,6 @@ const ReviewCard = ({ rating, setRating }) => {
   // form
   const {
     register,
-    watch,
-    setValue,
     formState: { errors },
     handleSubmit,
     reset,
